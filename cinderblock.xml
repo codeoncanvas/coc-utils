@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<cinder>
+<block
+	name="CoC-Utils"
+	id=""
+	author=""
+	summary=""
+	license=""
+	git=""
+	version=""
+	library=""
+	>
+	
+	<headerPattern>src/*.h</headerPattern>
+	<sourcePattern>src/*.cpp</sourcePattern>
+	
+	<platform os="msw">
+		<includePath system="false">src</includePath>
+	</platform>
+
+</block>
+</cinder>
