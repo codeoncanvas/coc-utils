@@ -5,24 +5,10 @@
 //
 
 #include "cocTimer.h"
-
-#if defined( COC_OF )
-#include "ofAppRunner.h"
-#endif
+#include "cocCore.h"
 
 namespace coc {
 
-//--------------------------------------------------------------
-double TimerGetTimeElapsedSinceLastFrame() {
-
-#if defined( COC_OF )
-    return ofGetLastFrameTime();
-#endif
-
-    return 0;
-}
-
-//--------------------------------------------------------------
 Timer::Timer() {
     reset();
 }
@@ -89,7 +75,7 @@ void Timer::update(double _optionalTimeElapsedSinceLastUpdateInSeconds) {
     
     double timeElapsedSinceLastUpdateInSeconds = _optionalTimeElapsedSinceLastUpdateInSeconds;
     if(timeElapsedSinceLastUpdateInSeconds < 0.0) {
-        timeElapsedSinceLastUpdateInSeconds = TimerGetTimeElapsedSinceLastFrame();
+        timeElapsedSinceLastUpdateInSeconds = coc::getTimeElapsedSinceLastFrame();
     }
     
     timeRunningInSeconds += timeElapsedSinceLastUpdateInSeconds;

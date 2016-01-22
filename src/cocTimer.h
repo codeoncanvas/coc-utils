@@ -8,10 +8,6 @@
 
 namespace coc {
 
-//--------------------------------------------------------------
-double TimerGetTimeElapsedSinceLastFrame();
-
-//--------------------------------------------------------------
 class Timer {
     
 public:
