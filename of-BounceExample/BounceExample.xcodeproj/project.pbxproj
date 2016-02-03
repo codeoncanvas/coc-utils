@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		67739E691C50A9D200761B58 /* cocBounce.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 67739E651C50A9D200761B58 /* cocBounce.cpp */; };
 		67739E6A1C50A9D200761B58 /* cocBounce2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 67739E671C50A9D200761B58 /* cocBounce2D.cpp */; };
+		678D6E931C61C5EA00921268 /* cocMath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 678D6E901C61C5EA00921268 /* cocMath.cpp */; };
+		678D6E941C61C5EA00921268 /* cocRect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 678D6E921C61C5EA00921268 /* cocRect.cpp */; };
 		67C7F4B91C520448003C65B2 /* cocCore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 67C7F4B71C520448003C65B2 /* cocCore.cpp */; };
 		E4328149138ABC9F0047C5CB /* openFrameworksDebug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4328148138ABC890047C5CB /* openFrameworksDebug.a */; };
 		E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E4B69E1D0A3A1BDC003C02F2 /* main.cpp */; };
@@ -51,6 +53,10 @@
 		67739E661C50A9D200761B58 /* cocBounce.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cocBounce.h; sourceTree = "<group>"; };
 		67739E671C50A9D200761B58 /* cocBounce2D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cocBounce2D.cpp; sourceTree = "<group>"; };
 		67739E681C50A9D200761B58 /* cocBounce2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cocBounce2D.h; sourceTree = "<group>"; };
+		678D6E8F1C61C5EA00921268 /* cocConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cocConstants.h; sourceTree = "<group>"; };
+		678D6E901C61C5EA00921268 /* cocMath.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cocMath.cpp; sourceTree = "<group>"; };
+		678D6E911C61C5EA00921268 /* cocMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cocMath.h; sourceTree = "<group>"; };
+		678D6E921C61C5EA00921268 /* cocRect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cocRect.cpp; sourceTree = "<group>"; };
 		67C7F4B71C520448003C65B2 /* cocCore.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cocCore.cpp; sourceTree = "<group>"; };
 		67C7F4B81C520448003C65B2 /* cocRect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cocRect.h; sourceTree = "<group>"; };
 		E4328143138ABC890047C5CB /* openFrameworksLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = openFrameworksLib.xcodeproj; path = ../../../libs/openFrameworksCompiled/project/osx/openFrameworksLib.xcodeproj; sourceTree = SOURCE_ROOT; };
@@ -104,9 +110,13 @@
 		67739E611C50A88B00761B58 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				678D6E8F1C61C5EA00921268 /* cocConstants.h */,
 				67739E621C50A88B00761B58 /* cocCore.h */,
 				67C7F4B71C520448003C65B2 /* cocCore.cpp */,
+				678D6E911C61C5EA00921268 /* cocMath.h */,
+				678D6E901C61C5EA00921268 /* cocMath.cpp */,
 				67C7F4B81C520448003C65B2 /* cocRect.h */,
+				678D6E921C61C5EA00921268 /* cocRect.cpp */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -267,11 +277,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				678D6E941C61C5EA00921268 /* cocRect.cpp in Sources */,
 				67C7F4B91C520448003C65B2 /* cocCore.cpp in Sources */,
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
 				67739E691C50A9D200761B58 /* cocBounce.cpp in Sources */,
 				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,
 				67739E6A1C50A9D200761B58 /* cocBounce2D.cpp in Sources */,
+				678D6E931C61C5EA00921268 /* cocMath.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
