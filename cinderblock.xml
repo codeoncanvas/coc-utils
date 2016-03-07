@@ -6,7 +6,8 @@
 	author=""
 	summary=""
 	license=""
-	git=""
+	url="https://github.com/codeoncanvas/coc-utils"
+	git="git://github.com/codeoncanvas/coc-utils.git"
 	version=""
 	library=""
 	>
