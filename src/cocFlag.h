@@ -13,15 +13,23 @@ class Flag {
 public:
     
     Flag();
+    Flag(const Flag & copy);
+    
+    void operator = (const bool & value);
+    void operator = (const Flag & value);
+    
+    bool operator == (const bool & value) const;
+    bool operator == (const Flag & value) const;
+    
+    operator bool() const {
+        return getValue();
+    }
     
     void update();
     
-    void operator = (const bool & value);
-    bool operator == (const bool & value);
-    
     void setValue(bool value);
-    bool getValue();
-    bool hasChanged();
+    const bool & getValue() const;
+    bool hasChanged() const;
     
     bool bValue;
     bool bValueNew;
