@@ -15,18 +15,41 @@ Flag::Flag() {
     bDirty = false;
 }
 
-void Flag::update() {
-    bValueChanged = (bValue != bValueNew);
-    bValue = bValueNew;
-    bDirty = false;
+Flag::Flag(const Flag & copy) {
+
+    // just doing a straight copy.
+    // there is an option to override this behaviour
+    // and do something tricky dicky.
+
+    bValue = copy.bValue;
+    bValueNew = copy.bValueNew;;
+    bValueChanged = copy.bValueChanged;
+    bDirty = copy.bDirty;
 }
 
+//--------------------------------------------------------------
 void Flag::operator = (const bool & value) {
     setValue(value);
 }
 
-bool Flag::operator == (const bool & value) {
+void Flag::operator = (const Flag & value) {
+    setValue(value.getValue());
+}
+
+//--------------------------------------------------------------
+bool Flag::operator == (const bool & value) const {
     return (getValue() == value);
+}
+
+bool Flag::operator == (const Flag & value) const {
+    return (getValue() == value.getValue());
+}
+
+//--------------------------------------------------------------
+void Flag::update() {
+    bValueChanged = (bValue != bValueNew);
+    bValue = bValueNew;
+    bDirty = false;
 }
 
 void Flag::setValue(bool value) {
@@ -34,14 +57,14 @@ void Flag::setValue(bool value) {
     bDirty = true;
 }
 
-bool Flag::getValue() {
+const bool & Flag::getValue() const {
     if(bDirty == true) {
         return bValueNew;
     }
     return bValue;
 }
 
-bool Flag::hasChanged() {
+bool Flag::hasChanged() const {
     if(bDirty == true) {
         return (bValue != bValueNew);
     }
