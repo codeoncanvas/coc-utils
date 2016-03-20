@@ -52,24 +52,24 @@ enum EaseFunction {
 //----------------------------------------------------------------------- Easing
 class Easing {
 public:
-    virtual float easeIn(float t, float b, float c, float d) const;
-    virtual float easeOut(float t, float b, float c, float d) const;
-    virtual float easeInOut(float t, float b, float c, float d) const;
+    virtual float easeIn(float t, float b, float c, float d) const = 0;
+    virtual float easeOut(float t, float b, float c, float d) const = 0;
+    virtual float easeInOut(float t, float b, float c, float d) const = 0;
 };
 
 //----------------------------------------------------------------------- EasingBack
 class EasingBack: public Easing {
 public:
-    float easeIn (float t,float b , float c, float d) const {
+    float easeIn (float t,float b , float c, float d) const override {
         float s = 1.70158f;
         float postFix = t/=d;
         return c*(postFix)*t*((s+1)*t - s) + b;
     }
-    float easeOut(float t,float b , float c, float d) const {
+    float easeOut(float t,float b , float c, float d) const override {
         float s = 1.70158f;
         return c*((t=t/d-1)*t*((s+1)*t + s) + 1) + b;
     }
-    float easeInOut(float t,float b , float c, float d) const {
+    float easeInOut(float t,float b , float c, float d) const override {
         float s = 1.70158f;
         if ((t/=d/2) < 1) return c/2*(t*t*(((s*=(1.525f))+1)*t - s)) + b;
         float postFix = t-=2;
@@ -80,10 +80,10 @@ public:
 //----------------------------------------------------------------------- EasingBounce
 class EasingBounce: public Easing {
 public:
-    float easeIn (float t,float b , float c, float d) const {
+    float easeIn (float t,float b , float c, float d) const override {
         return c - easeOut (d-t, 0, c, d) + b;
     }
-    float easeOut(float t,float b , float c, float d) const {
+    float easeOut(float t,float b , float c, float d) const override {
         if ((t/=d) < (1/2.75f)) {
             return c*(7.5625f*t*t) + b;
         } else if (t < (2/2.75f)) {
@@ -97,7 +97,7 @@ public:
             return c*(7.5625f*(postFix)*t + .984375f) + b;
         }
     }
-    float easeInOut(float t,float b , float c, float d) const {
+    float easeInOut(float t,float b , float c, float d) const override {
         if (t < d/2) return easeIn (t*2, 0, c, d) * .5f + b;
         else return easeOut (t*2-d, 0, c, d) * .5f + c*.5f + b;
     }
@@ -106,13 +106,13 @@ public:
 //----------------------------------------------------------------------- EasingCirc
 class EasingCirc: public Easing {
 public:
-    float easeIn (float t,float b , float c, float d) const {
+    float easeIn (float t,float b , float c, float d) const override {
         return -c * (sqrt(1 - (t/=d)*t) - 1) + b;
     }
-    float easeOut(float t,float b , float c, float d) const {
+    float easeOut(float t,float b , float c, float d) const override {
         return c * sqrt(1 - (t=t/d-1)*t) + b;
     }
-    float easeInOut(float t,float b , float c, float d) const {
+    float easeInOut(float t,float b , float c, float d) const override {
         if ((t/=d/2) < 1) return -c/2 * (sqrt(1 - t*t) - 1) + b;
         return c/2 * (sqrt(1 - t*(t-=2)) + 1) + b;
     }
@@ -121,13 +121,13 @@ public:
 //----------------------------------------------------------------------- EasingCubic
 class EasingCubic: public Easing {
 public:
-    float easeIn (float t,float b , float c, float d) const {
+    float easeIn (float t,float b , float c, float d) const override {
         return c*(t/=d)*t*t + b;
     }
-    float easeOut(float t,float b , float c, float d) const {
+    float easeOut(float t,float b , float c, float d) const override {
         return c*((t=t/d-1)*t*t + 1) + b;
     }
-    float easeInOut(float t,float b , float c, float d) const {
+    float easeInOut(float t,float b , float c, float d) const override {
         if ((t/=d/2) < 1) return c/2*t*t*t + b;
         return c/2*((t-=2)*t*t + 2) + b;
     }
@@ -136,7 +136,7 @@ public:
 //----------------------------------------------------------------------- EasingElastic
 class EasingElastic: public Easing {
 public:
-    float easeIn (float t,float b , float c, float d) const {
+    float easeIn (float t,float b , float c, float d) const override {
         if (t==0) return b;  if ((t/=d)==1) return b+c;
         float p=d*.3f;
         float a=c;
@@ -144,14 +144,14 @@ public:
         float postFix =a*pow(2,10*(t-=1)); // this is a fix, again, with post-increment operators
         return -(postFix * sin((t*d-s)*(2*M_PI)/p )) + b;
     }
-    float easeOut(float t,float b , float c, float d) const {
+    float easeOut(float t,float b , float c, float d) const override {
         if (t==0) return b;  if ((t/=d)==1) return b+c;
         float p=d*.3f;
         float a=c;
         float s=p/4;
         return (a*pow(2,-10*t) * sin( (t*d-s)*(2*M_PI)/p ) + c + b);
     }
-    float easeInOut(float t,float b , float c, float d) const {
+    float easeInOut(float t,float b , float c, float d) const override {
         if (t==0) return b;  if ((t/=d/2)==2) return b+c;
         float p=d*(.3f*1.5f);
         float a=c;
@@ -168,13 +168,13 @@ public:
 //----------------------------------------------------------------------- EasingExpo
 class EasingExpo: public Easing {
 public:
-    float easeIn (float t,float b , float c, float d) const {
+    float easeIn (float t,float b , float c, float d) const override {
         return (t==0) ? b : c * pow(2, 10 * (t/d - 1)) + b;
     }
-    float easeOut(float t,float b , float c, float d) const {
+    float easeOut(float t,float b , float c, float d) const override {
         return (t==d) ? b+c : c * (-pow(2, -10 * t/d) + 1) + b;
     }
-    float easeInOut(float t,float b , float c, float d) const {
+    float easeInOut(float t,float b , float c, float d) const override {
         if (t==0) return b;
         if (t==d) return b+c;
         if ((t/=d/2) < 1) return c/2 * pow(2, 10 * (t - 1)) + b;
@@ -185,13 +185,13 @@ public:
 //----------------------------------------------------------------------- EasingLinear
 class EasingLinear: public Easing {
 public:
-    float easeIn (float t,float b , float c, float d) const {
+    float easeIn (float t,float b , float c, float d) const override {
         return c*t/d + b;
     }
-    float easeOut(float t,float b , float c, float d) const {
+    float easeOut(float t,float b , float c, float d) const override {
         return c*t/d + b;
     }
-    float easeInOut(float t,float b , float c, float d) const {
+    float easeInOut(float t,float b , float c, float d) const override {
         return c*t/d + b;
     }
 };
@@ -199,14 +199,14 @@ public:
 //----------------------------------------------------------------------- EasingQuad
 class EasingQuad: public Easing {
 public:
-    float easeIn (float t,float b , float c, float d) const {
+    float easeIn (float t,float b , float c, float d) const override {
         return c*(t/=d)*t + b;
     }
-    float easeOut(float t,float b , float c, float d) const {
+    float easeOut(float t,float b , float c, float d) const override {
         return -c *(t/=d)*(t-2) + b;
     }
     
-    float easeInOut(float t,float b , float c, float d) const {
+    float easeInOut(float t,float b , float c, float d) const override {
         if ((t/=d/2) < 1) return c/2*t*t + b;
         return -c/2 * ((--t)*(t-2) - 1) + b;
     }
@@ -215,13 +215,13 @@ public:
 //----------------------------------------------------------------------- EasingQuart
 class EasingQuart: public Easing {
 public:
-    float easeIn (float t,float b , float c, float d) const {
+    float easeIn (float t,float b , float c, float d) const override {
         return c*(t/=d)*t*t*t + b;
     }
-    float easeOut(float t,float b , float c, float d) const {
+    float easeOut(float t,float b , float c, float d) const override {
         return -c * ((t=t/d-1)*t*t*t - 1) + b;
     }
-    float easeInOut(float t,float b , float c, float d) const {
+    float easeInOut(float t,float b , float c, float d) const override {
         if ((t/=d/2) < 1) return c/2*t*t*t*t + b;
         return -c/2 * ((t-=2)*t*t*t - 2) + b;
     }
@@ -230,13 +230,13 @@ public:
 //----------------------------------------------------------------------- EasingQuint
 class EasingQuint: public Easing {
 public:
-    float easeIn (float t,float b , float c, float d) const {
+    float easeIn (float t,float b , float c, float d) const override {
         return c*(t/=d)*t*t*t*t + b;
     }
-    float easeOut(float t,float b , float c, float d) const {
+    float easeOut(float t,float b , float c, float d) const override {
         return c*((t=t/d-1)*t*t*t*t + 1) + b;
     }
-    float easeInOut(float t,float b , float c, float d) const {
+    float easeInOut(float t,float b , float c, float d) const override {
         if ((t/=d/2) < 1) return c/2*t*t*t*t*t + b;
         return c/2*((t-=2)*t*t*t*t + 2) + b;
     }
@@ -245,13 +245,13 @@ public:
 //----------------------------------------------------------------------- EasingSine
 class EasingSine: public Easing {
 public:
-    float easeIn (float t,float b , float c, float d) const {
+    float easeIn (float t,float b , float c, float d) const override {
         return -c * cos(t/d * (M_PI/2)) + c + b;
     }
-    float easeOut(float t,float b , float c, float d) const {
+    float easeOut(float t,float b , float c, float d) const override {
         return c * sin(t/d * (M_PI/2)) + b;
     }
-    float easeInOut(float t,float b , float c, float d) const {
+    float easeInOut(float t,float b , float c, float d) const override {
         return -c/2 * (cos(M_PI*t/d) - 1) + b;
     }
 };
