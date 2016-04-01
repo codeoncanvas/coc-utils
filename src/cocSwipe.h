@@ -6,8 +6,43 @@
 
 #pragma once
 
+#include "cocCore.h"
+
 namespace coc {
 
+//--------------------------------------------------------------
+enum SwipeGesture {
+    SwipeGestureUndefined = 0,
+    SwipeGestureUp,
+    SwipeGestureRight,
+    SwipeGestureDown,
+    SwipeGestureLeft
+};
+
+//--------------------------------------------------------------
+class SwipePoint {
+
+public:
+
+    enum SwipePointType {
+        SwipePointTypeUndefined = 0,
+        SwipePointTypeDown,
+        SwipePointTypeMoved,
+        SwipePointTypeUp
+    };
+
+    SwipePoint() {
+        type = SwipePointTypeUndefined;
+        timeSec = 0;
+    }
+    
+    glm::vec2 position;
+    glm::vec2 velocity;
+    SwipePointType type;
+    float timeSec;
+};
+
+//--------------------------------------------------------------
 class Swipe {
     
 public:
@@ -15,32 +50,25 @@ public:
     Swipe();
     ~Swipe();
     
-    void start(double timeDurationInSeconds, double optionalTimeOffsetInSeconds=-1);
-    void stop();
-    void reset();
-    void setPaused(bool value);
+    void setSwipeArea(const coc::Rect & rect);
     
     void update(double optionalTimeElapsedSinceLastUpdateInSeconds=-1);
     
-    bool isRunning() const;
-    bool isPaused() const;
-    bool hasStarted() const;
-    bool hasFinished() const;
-    bool hasFinishedOnLastUpdate() const;
-
-    double getTimeRunningInSeconds() const;
-    double getTimeDurationInSeconds() const;
-    double getProgress() const;
+    void pointDown(float x, float y);
+    void pointMoved(float x, float y);
+    void pointUp(float x, float y);
+    void pointNew(float x, float y, SwipePoint::SwipePointType type);
+    
+    const std::vector<SwipePoint> & getPoints() const;
+    float getSwipeTime();
     
 protected:
     
-    double timeRunningInSeconds;
-    double timeDurationInSeconds;
-    float progress;
-    bool bStarted;
-    bool bPaused;
-    bool bFinished;
-    bool bFinishedOnLastUpdate;
+    std::vector<SwipePoint> points;
+    std::vector<SwipePoint> pointsNew;
+    coc::Rect swipeArea;
+    float swipeTime;
+    
 };
 
 }

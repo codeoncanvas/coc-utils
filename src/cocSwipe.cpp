@@ -5,128 +5,80 @@
 //
 
 #include "cocSwipe.h"
-#include "cocCore.h"
 
 namespace coc {
 
+using namespace std;
+using namespace glm;
+
+//--------------------------------------------------------------
 Swipe::Swipe() {
-    reset();
+    swipeTime = 0;
 }
 
 Swipe::~Swipe() {
     //
 }
 
-void Swipe::start(double _timeDurationInSeconds, double _optionalTimeOffsetInSeconds) {
-    reset();
-    
-    bStarted = true;
-    
-    timeDurationInSeconds = _timeDurationInSeconds;
-    if(timeDurationInSeconds <= 0.0) {
-        
-        // if timer duration is zero or less the zero,
-        // the timer finishes straight away,
-        // without update having to be called.
-        
-        timeDurationInSeconds = 0.0;
-        progress = 1.0;
-        bFinished = true;
-        bFinishedOnLastUpdate = true;
-        
-        return;
-    }
-
-    timeRunningInSeconds = _optionalTimeOffsetInSeconds;
-    if(timeRunningInSeconds < 0.0) {
-        timeRunningInSeconds = 0.0;
-    }
+void Swipe::setSwipeArea(const coc::Rect & rect) {
+    swipeArea = rect;
 }
 
-void Swipe::stop() {
-    reset();
-}
-
-void Swipe::reset() {
-    timeRunningInSeconds = 0.0;
-    timeDurationInSeconds = 0.0;
-    progress = 0;
-    bStarted = false;
-    bPaused = false;
-    bFinished = false;
-    bFinishedOnLastUpdate = false;
-}
-
-void Swipe::setPaused(bool value) {
-    bPaused = value;
-}
-
+//--------------------------------------------------------------
 void Swipe::update(double _optionalTimeElapsedSinceLastUpdateInSeconds) {
 
-    bFinishedOnLastUpdate = false;
+    bool bSwipeStarted = true;
+    bSwipeStarted = bSwipeStarted && (points.size() > 0);
     
-    if(isRunning() == false) {
-        return;
+    bool bSwipeStopped = false;
+    if(bSwipeStarted == true) {
+        bSwipeStopped = bSwipeStopped && (points[points.size()-1].type == SwipePoint::SwipePointTypeUp);
     }
     
-    if(isPaused() == true) {
+    bool bUpdate = false;
+    bUpdate = bUpdate || (bSwipeStarted == true);
+    bUpdate = bUpdate || (pointsNew.size() > 0);
+    bUpdate = bUpdate && (bSwipeStopped == false);
+    
+    if(bUpdate == false) {
         return;
     }
-    
+
     double timeElapsedSinceLastUpdateInSeconds = _optionalTimeElapsedSinceLastUpdateInSeconds;
     if(timeElapsedSinceLastUpdateInSeconds < 0.0) {
         timeElapsedSinceLastUpdateInSeconds = coc::getTimeElapsedSinceLastFrame();
     }
     
-    timeRunningInSeconds += timeElapsedSinceLastUpdateInSeconds;
-    if(timeRunningInSeconds > timeDurationInSeconds) {
-        timeRunningInSeconds = timeDurationInSeconds;
-    }
-    
-    progress = timeRunningInSeconds / timeDurationInSeconds;
-    
-    bool bFinishedNew = (progress >= 1.0);
-
-    bFinishedOnLastUpdate = true;
-    bFinishedOnLastUpdate = bFinishedOnLastUpdate && (bFinished == false);
-    bFinishedOnLastUpdate = bFinishedOnLastUpdate && (bFinishedNew == true);
-    
-    bFinished = bFinishedNew;
+    swipeTime += timeElapsedSinceLastUpdateInSeconds;
 }
 
-bool Swipe::isRunning() const {
-    bool bRunning = true;
-    bRunning = bRunning && (bStarted == true);
-    bRunning = bRunning && (bFinished == false);
-    return bRunning;
+//--------------------------------------------------------------
+void Swipe::pointDown(float x, float y) {
+    pointNew(x, y, SwipePoint::SwipePointTypeDown);
 }
 
-bool Swipe::isPaused() const {
-    return bPaused;
+void Swipe::pointMoved(float x, float y) {
+    pointNew(x, y, SwipePoint::SwipePointTypeMoved);
 }
 
-bool Swipe::hasStarted() const {
-    return bStarted;
+void Swipe::pointUp(float x, float y) {
+    pointNew(x, y, SwipePoint::SwipePointTypeUp);
 }
 
-bool Swipe::hasFinished() const {
-    return bFinished;
+void Swipe::pointNew(float x, float y, SwipePoint::SwipePointType type) {
+    pointsNew.push_back(SwipePoint());
+    SwipePoint & point = pointsNew.back();
+    point.position = vec2(x, y);
+    point.type = SwipePoint::SwipePointTypeMoved;
 }
 
-bool Swipe::hasFinishedOnLastUpdate() const {
-    return bFinishedOnLastUpdate;
+//--------------------------------------------------------------
+const std::vector<SwipePoint> & Swipe::getPoints() const {
+    return points;
 }
 
-double Swipe::getTimeRunningInSeconds() const {
-    return timeRunningInSeconds;
-}
-
-double Swipe::getTimeDurationInSeconds() const {
-    return timeDurationInSeconds;
-}
-
-double Swipe::getProgress() const {
-    return progress;
+float Swipe::getSwipeTime() {
+    return swipeTime;
 }
 
 }
