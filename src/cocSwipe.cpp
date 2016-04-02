@@ -13,8 +13,11 @@ using namespace glm;
 
 //--------------------------------------------------------------
 Swipe::Swipe() {
-    swipeTime = 0;
+
+    swipePixelDistanceThreshold = 50;
     swipePixelVelocityThreshold = 100;
+    
+    reset();
 }
 
 Swipe::~Swipe() {
@@ -30,6 +33,10 @@ void Swipe::setSwipeArea(float x, float y, float w, float h) {
     swipeArea.setY(y);
     swipeArea.setW(w);
     swipeArea.setH(h);
+}
+
+void Swipe::setSwipePixelDistanceThreshold(float value) {
+    swipePixelDistanceThreshold = value;
 }
 
 void Swipe::setSwipePixelVelocityThreshold(float value) {
@@ -54,7 +61,7 @@ void Swipe::update(double _optionalTimeElapsedSinceLastUpdateInSeconds) {
             }
             if(bDownNew == true) {
                 bSwipeStopped = false;
-                points.clear();
+                reset();
             }
         }
     }
@@ -95,7 +102,9 @@ void Swipe::update(double _optionalTimeElapsedSinceLastUpdateInSeconds) {
         return;
     }
     
-    SwipePoint * pointNew = NULL;
+    //----------------------------------------------------------
+    bool bFound = false;
+    SwipePoint pointNew;
     
     if(bSwipeStartedNow == true) {
 
@@ -103,7 +112,8 @@ void Swipe::update(double _optionalTimeElapsedSinceLastUpdateInSeconds) {
 
         for(int i=0; i<pointsNew.size(); i++) {
             if(pointsNew[i].type == SwipePoint::TypeDown) {
-                pointNew = &pointsNew[i];
+                pointNew = pointsNew[i];
+                bFound = true;
                 break;
             }
         }
@@ -114,41 +124,115 @@ void Swipe::update(double _optionalTimeElapsedSinceLastUpdateInSeconds) {
         
         for(int i=pointsNew.size()-1; i>=0; i--) {
             if(pointsNew[i].type == SwipePoint::TypeUp) {
-                pointNew = &pointsNew[i];
+            
+                bool bSame = false;
+                if(points.size() > 0) {
+                    const SwipePoint & pointLast = points[points.size()-1];
+                    bSame = true;
+                    bSame = bSame && ((int)pointsNew[i].position.x == (int)pointLast.position.x);
+                    bSame = bSame && ((int)pointsNew[i].position.y == (int)pointLast.position.y);
+                }
+                if(bSame == true) {
+                    // remove last move point and replace with up point.
+                    points.erase(points.begin() + points.size()-1);
+                }
+            
+                pointNew = pointsNew[i];
+                bFound = true;
                 break;
             }
         }
         
         // look for touch moved first.
         
-        if(pointNew == NULL) {
+        if(bFound == false) {
             for(int i=pointsNew.size()-1; i>=0; i--) {
                 if(pointsNew[i].type == SwipePoint::TypeMoved) {
-                    pointNew = &pointsNew[i];
+                    
+                    bool bSame = false;
+                    if(points.size() > 0) {
+                        const SwipePoint & pointLast = points[points.size()-1];
+                        bSame = true;
+                        bSame = bSame && ((int)pointsNew[i].position.x == (int)pointLast.position.x);
+                        bSame = bSame && ((int)pointsNew[i].position.y == (int)pointLast.position.y);
+                    }
+                    if(bSame == true) {
+                        continue;
+                    }
+                
+                    pointNew = pointsNew[i];
+                    bFound = true;
                     break;
                 }
             }
         }
     }
     
-    if(pointNew == NULL) {
+    pointsNew.clear();
+    
+    if(bFound == false) {
         return;
     }
     
-    points.push_back(SwipePoint());
+    points.push_back(pointNew);
     SwipePoint & point = points.back();
-    point.position = pointNew->position;
-    point.type = pointNew->type;
     point.time = swipeTime;
     
     if(points.size() > 1) {
     
-        SwipePoint & pointLast = points[points.size()-2];
+        const SwipePoint & pointLast = points[points.size()-2];
         point.velocity = (point.position - pointLast.position) / (point.time - pointLast.time);
         point.velocityScale = length(point.velocity) / swipePixelVelocityThreshold;
+        
+        point.angleDeg = coc::angleClockwise(point.velocity);
+        point.angleDeg = (point.angleDeg / (float)PI) * 180.0;
     }
     
-    pointsNew.clear();
+    //----------------------------------------------------------
+    if(gestureStartIndex == -1) {
+        gestureStartIndex = points.size() - 1;
+    }
+    
+    SwipePoint gesturePointStart;
+    SwipeDirection gestureDirectionStart;
+    bGestureFoundNew = false;
+    
+    for(int i=gestureStartIndex; i<points.size(); i++) {
+        if(i == gestureStartIndex) {
+            gesturePointStart = points[i];
+            gestureDirectionStart = getDirectionFromAngle(gesturePointStart.angleDeg);
+        }
+        
+        const SwipePoint & gesturePoint = points[i];
+        if(gesturePoint.velocityScale < 1.0) {
+            gestureDirection = SwipeDirectionUndefined;
+            gestureStartIndex = -1;
+            break;
+        }
+        
+        SwipeDirection gestureDirectionNew = getDirectionFromAngle(gesturePoint.angleDeg);
+        if(gestureDirectionNew != gestureDirectionStart) {
+            gestureDirection = SwipeDirectionUndefined;
+            gestureStartIndex = -1;
+            break;
+        }
+        
+        float dist = distance(gesturePoint.position, gesturePointStart.position);
+        if(dist >= swipePixelDistanceThreshold) {
+            bGestureFoundNew = gestureDirection != gestureDirectionNew;
+            gestureDirection = gestureDirectionNew;
+        }
+    }
+}
+
+void Swipe::reset() {
+    
+    points.clear();
+    swipeTime = 0;
+    
+    gestureDirection = SwipeDirectionUndefined;
+    gestureStartIndex = -1;
+    bGestureFoundNew = false;
 }
 
 //--------------------------------------------------------------
@@ -172,12 +256,35 @@ void Swipe::pointNew(float x, float y, SwipePoint::Type type) {
 }
 
 //--------------------------------------------------------------
+bool Swipe::hasFoundSwipeGesture() const {
+    return bGestureFoundNew;
+}
+
+SwipeDirection Swipe::getSwipeGestureDirection() const {
+    return gestureDirection;
+}
+
 const std::vector<SwipePoint> & Swipe::getPoints() const {
     return points;
 }
 
 float Swipe::getSwipeTime() const {
     return swipeTime;
+}
+
+//--------------------------------------------------------------
+SwipeDirection Swipe::getDirectionFromAngle(float angleDeg) const {
+    SwipeDirection dir;
+    if((angleDeg > 315 && angleDeg <= 360) || (angleDeg >= 0 && angleDeg <= 45)) {
+        dir = SwipeDirectionUp;
+    } else if(angleDeg > 45 && angleDeg <= 135) {
+        dir = SwipeDirectionRight;
+    } else if(angleDeg > 135 && angleDeg <= 225) {
+        dir = SwipeDirectionDown;
+    } else if(angleDeg > 225 && angleDeg <= 315) {
+        dir = SwipeDirectionLeft;
+    }
+    return dir;
 }
 
 }

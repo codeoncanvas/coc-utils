@@ -11,12 +11,12 @@
 namespace coc {
 
 //--------------------------------------------------------------
-enum SwipeGesture {
-    SwipeGestureUndefined = 0,
-    SwipeGestureUp,
-    SwipeGestureRight,
-    SwipeGestureDown,
-    SwipeGestureLeft
+enum SwipeDirection {
+    SwipeDirectionUndefined = 0,
+    SwipeDirectionUp,
+    SwipeDirectionRight,
+    SwipeDirectionDown,
+    SwipeDirectionLeft
 };
 
 //--------------------------------------------------------------
@@ -34,13 +34,15 @@ public:
     SwipePoint() {
         type = TypeUndefined;
         velocityScale = 0;
+        angleDeg = 0;
         time = 0;
     }
     
+    Type type;
     glm::vec2 position;
     glm::vec2 velocity;
     float velocityScale;
-    Type type;
+    float angleDeg;
     float time;
 };
 
@@ -54,25 +56,37 @@ public:
     
     void setSwipeArea(const coc::Rect & rect);
     void setSwipeArea(float x, float y, float w, float h);
+    void setSwipePixelDistanceThreshold(float value);
     void setSwipePixelVelocityThreshold(float value);
     
     void update(double optionalTimeElapsedSinceLastUpdateInSeconds=-1);
+    void reset();
     
     void pointDown(float x, float y);
     void pointMoved(float x, float y);
     void pointUp(float x, float y);
     void pointNew(float x, float y, SwipePoint::Type type);
-    
+
+    bool hasFoundSwipeGesture() const;
+    SwipeDirection getSwipeGestureDirection() const;
+
     const std::vector<SwipePoint> & getPoints() const;
     float getSwipeTime() const;
     
 protected:
+
+    SwipeDirection getDirectionFromAngle(float angleDeg) const;
     
     std::vector<SwipePoint> points;
     std::vector<SwipePoint> pointsNew;
     coc::Rect swipeArea;
+    float swipePixelDistanceThreshold;
     float swipePixelVelocityThreshold;
     float swipeTime;
+    
+    SwipeDirection gestureDirection;
+    int gestureStartIndex;
+    bool bGestureFoundNew;
     
 };
 

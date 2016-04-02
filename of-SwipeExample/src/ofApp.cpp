@@ -11,6 +11,36 @@ void ofApp::setup() {
 void ofApp::update(){
     
     swipe.update();
+    
+    bool bFoundSwipeGesture = swipe.hasFoundSwipeGesture();
+    if(bFoundSwipeGesture == true) {
+        coc::SwipeDirection swipeDirection = swipe.getSwipeGestureDirection();
+        
+        string dir = "";
+        switch (swipeDirection) {
+            
+            case coc::SwipeDirectionUp:
+                dir = "UP";
+                break;
+                
+            case coc::SwipeDirectionRight:
+                dir = "RIGHT";
+                break;
+
+            case coc::SwipeDirectionDown:
+                dir = "DOWN";
+                break;
+
+            case coc::SwipeDirectionLeft:
+                dir = "LEFT";
+                break;
+
+            default:
+                break;
+        }
+        
+        cout << dir << endl;
+    }
 }
 
 //--------------------------------------------------------------
