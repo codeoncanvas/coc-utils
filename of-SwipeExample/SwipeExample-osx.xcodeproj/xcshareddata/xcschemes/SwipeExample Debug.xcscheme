@@ -17,13 +17,13 @@
                BlueprintIdentifier = "E4B69B5A0A3A1756003C02F2"
                BuildableName = "SwipeExample.app"
                BlueprintName = "SwipeExample"
-               ReferencedContainer = "container:SwipeExample.xcodeproj">
+               ReferencedContainer = "container:SwipeExample-osx.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
-      buildConfiguration = "Release"
+      buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
@@ -35,14 +35,14 @@
             BlueprintIdentifier = "E4B69B5A0A3A1756003C02F2"
             BuildableName = "SwipeExample.app"
             BlueprintName = "SwipeExample"
-            ReferencedContainer = "container:SwipeExample.xcodeproj">
+            ReferencedContainer = "container:SwipeExample-osx.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
    <LaunchAction
-      buildConfiguration = "Release"
+      buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
@@ -58,14 +58,14 @@
             BlueprintIdentifier = "E4B69B5A0A3A1756003C02F2"
             BuildableName = "SwipeExample.app"
             BlueprintName = "SwipeExample"
-            ReferencedContainer = "container:SwipeExample.xcodeproj">
+            ReferencedContainer = "container:SwipeExample-osx.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
-      buildConfiguration = "Release"
+      buildConfiguration = "Debug"
       shouldUseLaunchSchemeArgsEnv = "YES"
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
@@ -77,15 +77,15 @@
             BlueprintIdentifier = "E4B69B5A0A3A1756003C02F2"
             BuildableName = "SwipeExample.app"
             BlueprintName = "SwipeExample"
-            ReferencedContainer = "container:SwipeExample.xcodeproj">
+            ReferencedContainer = "container:SwipeExample-osx.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
-      buildConfiguration = "Release">
+      buildConfiguration = "Debug">
    </AnalyzeAction>
    <ArchiveAction
-      buildConfiguration = "Release"
+      buildConfiguration = "Debug"
       revealArchiveInOrganizer = "YES">
    </ArchiveAction>
 </Scheme>
