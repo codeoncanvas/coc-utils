@@ -23,4 +23,8 @@ public:
     void gotMessage(ofMessage msg);
     
     coc::Swipe swipe;
+    
+    ofTrueTypeFont font;
+    string fontStr;
+    float fontAlpha;
 };

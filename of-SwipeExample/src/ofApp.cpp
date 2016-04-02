@@ -5,6 +5,10 @@ void ofApp::setup() {
     
     swipe.setSwipeArea(0, 0, ofGetWidth(), ofGetHeight());
     swipe.setSwipePixelVelocityThreshold(100.0);
+    
+    font.load("verdana.ttf", 40);
+    fontStr = "";
+    fontAlpha = 0.0;
 }
 
 //--------------------------------------------------------------
@@ -16,31 +20,32 @@ void ofApp::update(){
     if(bFoundSwipeGesture == true) {
         coc::SwipeDirection swipeDirection = swipe.getSwipeGestureDirection();
         
-        string dir = "";
         switch (swipeDirection) {
             
             case coc::SwipeDirectionUp:
-                dir = "UP";
+                fontStr = "UP";
                 break;
                 
             case coc::SwipeDirectionRight:
-                dir = "RIGHT";
+                fontStr = "RIGHT";
                 break;
 
             case coc::SwipeDirectionDown:
-                dir = "DOWN";
+                fontStr = "DOWN";
                 break;
 
             case coc::SwipeDirectionLeft:
-                dir = "LEFT";
+                fontStr = "LEFT";
                 break;
 
             default:
                 break;
         }
         
-        cout << dir << endl;
+        fontAlpha = 1.0;
     }
+    
+    fontAlpha += (0.0 - fontAlpha) * 0.05;
 }
 
 //--------------------------------------------------------------
@@ -79,6 +84,10 @@ void ofApp::draw(){
     }
     
     mesh.draw();
+    
+    ofSetColor(0, 255 * fontAlpha);
+    font.drawString(fontStr, 20, 50);
+    ofSetColor(255);
 }
 
 //--------------------------------------------------------------
