@@ -46,6 +46,9 @@ void Swipe::setSwipePixelVelocityThreshold(float value) {
 //--------------------------------------------------------------
 void Swipe::update(double _optionalTimeElapsedSinceLastUpdateInSeconds) {
 
+    bGestureFoundNew = false; // clear on every new frame.
+
+    //----------------------------------------------------------
     bool bSwipeStopped = false;
     if(points.size() > 0) {
         const SwipePoint & pointLast = points[points.size()-1];
@@ -195,7 +198,6 @@ void Swipe::update(double _optionalTimeElapsedSinceLastUpdateInSeconds) {
     
     SwipePoint gesturePointStart;
     SwipeDirection gestureDirectionStart;
-    bGestureFoundNew = false;
     
     for(int i=gestureStartIndex; i<points.size(); i++) {
         if(i == gestureStartIndex) {
@@ -232,7 +234,6 @@ void Swipe::reset() {
     
     gestureDirection = SwipeDirectionUndefined;
     gestureStartIndex = -1;
-    bGestureFoundNew = false;
 }
 
 //--------------------------------------------------------------
