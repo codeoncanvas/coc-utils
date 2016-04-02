@@ -24,22 +24,22 @@ class SwipePoint {
 
 public:
 
-    enum SwipePointType {
-        SwipePointTypeUndefined = 0,
-        SwipePointTypeDown,
-        SwipePointTypeMoved,
-        SwipePointTypeUp
+    enum Type {
+        TypeUndefined = 0,
+        TypeDown,
+        TypeMoved,
+        TypeUp
     };
 
     SwipePoint() {
-        type = SwipePointTypeUndefined;
-        timeSec = 0;
+        type = TypeUndefined;
+        time = 0;
     }
     
     glm::vec2 position;
     glm::vec2 velocity;
-    SwipePointType type;
-    float timeSec;
+    Type type;
+    float time;
 };
 
 //--------------------------------------------------------------
@@ -57,10 +57,10 @@ public:
     void pointDown(float x, float y);
     void pointMoved(float x, float y);
     void pointUp(float x, float y);
-    void pointNew(float x, float y, SwipePoint::SwipePointType type);
+    void pointNew(float x, float y, SwipePoint::Type type);
     
     const std::vector<SwipePoint> & getPoints() const;
-    float getSwipeTime();
+    float getSwipeTime() const;
     
 protected:
     
