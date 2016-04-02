@@ -51,6 +51,7 @@ public:
     ~Swipe();
     
     void setSwipeArea(const coc::Rect & rect);
+    void setSwipePixelVelocityThreshold(float value);
     
     void update(double optionalTimeElapsedSinceLastUpdateInSeconds=-1);
     
@@ -67,6 +68,7 @@ protected:
     std::vector<SwipePoint> points;
     std::vector<SwipePoint> pointsNew;
     coc::Rect swipeArea;
+    float swipePixelVelocityThreshold;
     float swipeTime;
     
 };

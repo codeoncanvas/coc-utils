@@ -14,6 +14,7 @@ using namespace glm;
 //--------------------------------------------------------------
 Swipe::Swipe() {
     swipeTime = 0;
+    swipePixelVelocityThreshold = 100;
 }
 
 Swipe::~Swipe() {
@@ -22,6 +23,10 @@ Swipe::~Swipe() {
 
 void Swipe::setSwipeArea(const coc::Rect & rect) {
     swipeArea = rect;
+}
+
+void Swipe::setSwipePixelVelocityThreshold(float value) {
+    swipePixelVelocityThreshold = value;
 }
 
 //--------------------------------------------------------------
@@ -83,15 +88,53 @@ void Swipe::update(double _optionalTimeElapsedSinceLastUpdateInSeconds) {
         return;
     }
     
-    for(int i=0; i<pointsNew.size(); i++) {
-        SwipePoint & pointNew = pointsNew[i];
+    SwipePoint * pointNew = NULL;
     
-        points.push_back(SwipePoint());
-        SwipePoint & point = points.back();
-        point.position = pointNew.position;
-        point.type = pointNew.type;
-        point.time = swipeTime;
+    if(bSwipeStartedNow == true) {
+
+        // look for touch down.
+
+        for(int i=0; i<pointsNew.size(); i++) {
+            if(pointsNew[i].type == SwipePoint::TypeDown) {
+                pointNew = &pointsNew[i];
+                break;
+            }
+        }
+    
+    } else {
+    
+        // look for touch up first.
+        
+        for(int i=pointsNew.size()-1; i>=0; i--) {
+            if(pointsNew[i].type == SwipePoint::TypeUp) {
+                pointNew = &pointsNew[i];
+                break;
+            }
+        }
+        
+        // look for touch moved first.
+        
+        if(pointNew == NULL) {
+            for(int i=pointsNew.size()-1; i>=0; i--) {
+                if(pointsNew[i].type == SwipePoint::TypeMoved) {
+                    pointNew = &pointsNew[i];
+                    break;
+                }
+            }
+        }
     }
+    
+    if(pointNew == NULL) {
+        return;
+    }
+    
+    points.push_back(SwipePoint());
+    SwipePoint & point = points.back();
+    point.position = pointNew->position;
+    point.type = pointNew->type;
+    point.time = swipeTime;
+    
+    cout << point.type << " " << point.time << endl;
     
     pointsNew.clear();
 }
