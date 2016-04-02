@@ -33,11 +33,13 @@ public:
 
     SwipePoint() {
         type = TypeUndefined;
+        velocityScale = 0;
         time = 0;
     }
     
     glm::vec2 position;
     glm::vec2 velocity;
+    float velocityScale;
     Type type;
     float time;
 };
@@ -51,6 +53,7 @@ public:
     ~Swipe();
     
     void setSwipeArea(const coc::Rect & rect);
+    void setSwipeArea(float x, float y, float w, float h);
     void setSwipePixelVelocityThreshold(float value);
     
     void update(double optionalTimeElapsedSinceLastUpdateInSeconds=-1);

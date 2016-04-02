@@ -25,6 +25,13 @@ void Swipe::setSwipeArea(const coc::Rect & rect) {
     swipeArea = rect;
 }
 
+void Swipe::setSwipeArea(float x, float y, float w, float h) {
+    swipeArea.setX(x);
+    swipeArea.setY(y);
+    swipeArea.setW(w);
+    swipeArea.setH(h);
+}
+
 void Swipe::setSwipePixelVelocityThreshold(float value) {
     swipePixelVelocityThreshold = value;
 }
@@ -134,7 +141,12 @@ void Swipe::update(double _optionalTimeElapsedSinceLastUpdateInSeconds) {
     point.type = pointNew->type;
     point.time = swipeTime;
     
-    cout << point.type << " " << point.time << endl;
+    if(points.size() > 1) {
+    
+        SwipePoint & pointLast = points[points.size()-2];
+        point.velocity = (point.position - pointLast.position) / (point.time - pointLast.time);
+        point.velocityScale = length(point.velocity) / swipePixelVelocityThreshold;
+    }
     
     pointsNew.clear();
 }

@@ -2,7 +2,9 @@
 
 //--------------------------------------------------------------
 void ofApp::setup() {
-    //
+    
+    swipe.setSwipeArea(0, 0, ofGetWidth(), ofGetHeight());
+    swipe.setSwipePixelVelocityThreshold(100.0);
 }
 
 //--------------------------------------------------------------
@@ -15,14 +17,38 @@ void ofApp::update(){
 void ofApp::draw(){
     
     const vector<coc::SwipePoint> & swipePoints = swipe.getPoints();
-    if(swipePoints.size() >= 2) {
-        for(int i=0; i<swipePoints.size()-1; i++) {
-            const coc::SwipePoint & swipePoint0 = swipePoints[i];
-            const coc::SwipePoint & swipePoint1 = swipePoints[i+1];
-            ofDrawLine(swipePoint0.position.x, swipePoint0.position.y,
-                       swipePoint1.position.x, swipePoint1.position.y);
-        }
+    
+    ofPolyline poly;
+    
+    for(int i=0; i<swipePoints.size(); i++) {
+        const coc::SwipePoint & swipePoint = swipePoints[i];
+        poly.addVertex(swipePoint.position.x, swipePoint.position.y);
     }
+    
+    ofMesh mesh;
+    mesh.setMode(OF_PRIMITIVE_TRIANGLE_STRIP);
+    
+    ofColor color0 = ofColor::green;
+    ofColor color1 = ofColor::red;
+    float thick = 2.0;
+    
+    for(int i=0; i<swipePoints.size(); i++) {
+        const coc::SwipePoint & swipePoint = swipePoints[i];
+    
+        ofVec3f pos = poly[i];
+        ofVec3f norm = poly.getNormalAtIndex(i);
+        
+        mesh.addVertex(pos + norm * thick);
+        mesh.addVertex(pos - norm * thick);
+
+        float colorScale = ofMap(swipePoint.velocityScale, 0.0, 1.0, 0.0, 1.0, true);
+        ofColor color = color0.getLerped(color1, colorScale);
+        
+        mesh.addColor(color);
+        mesh.addColor(color);
+    }
+    
+    mesh.draw();
 }
 
 //--------------------------------------------------------------
