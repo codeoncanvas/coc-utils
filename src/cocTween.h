@@ -14,7 +14,8 @@ namespace coc {
 
 //-----------------------------------------------------------------------
 enum EaseFunction {
-    EASE_BACK_IN = 0,
+    EASE_LINEAR,
+    EASE_BACK_IN,
     EASE_BACK_OUT,
     EASE_BACK_INOUT,
     EASE_BOUNCE_IN,
@@ -32,9 +33,6 @@ enum EaseFunction {
     EASE_EXPO_IN,
     EASE_EXPO_OUT,
     EASE_EXPO_INOUT,
-    EASE_LINEAR_IN,
-    EASE_LINEAR_OUT,
-    EASE_LINEAR_INOUT,
     EASE_QUAD_IN,
     EASE_QUAD_OUT,
     EASE_QUAD_INOUT,
@@ -371,7 +369,7 @@ protected:
 };
 
 //-----------------------------------------------------------------------
-static float tween(float value, float inputMin, float inputMax, float outputMin, float outputMax, EaseFunction easingFunc, bool bClamp = false) {
+static float tween(float value, float inputMin, float inputMax, float outputMin, float outputMax, EaseFunction easingFunc=EASE_LINEAR, bool bClamp = false) {
     static Tween tweenObj;
     return tweenObj.tween(value, inputMin, inputMax, outputMin, outputMax, easingFunc, bClamp);
 }
