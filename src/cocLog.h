@@ -29,8 +29,6 @@ Todo: Example OF usage
 namespace coc {
 
 
-		using namespace std;
-
 #ifdef COC_CI
 
 		static std::vector<std::string> listDirectory(std::string _path, bool _verbose = false) {
@@ -63,20 +61,20 @@ namespace coc {
 #endif
 
 		// output format is YYYY-MM-DD
-		static string getLogFileName( string _ext = "log" ) {
+		static std::string getLogFileName( std::string _ext = "log" ) {
 
 			time_t timeSinceEpoch = time(NULL);
 			struct tm *now = localtime(&timeSinceEpoch);
 
 			char result[100];
 			strftime(result, sizeof(result), "%Y-%m-%d", now);
-			string str(result);
+			std::string str(result);
 
 			return str + "." + _ext;
 
 		}
 
-		static void limitLogFiles( string _path, int _i = 30) {
+		static void limitLogFiles( std::string _path, int _i = 30) {
 			
 			std::vector<std::string> files;
 
@@ -89,7 +87,7 @@ namespace coc {
 			#endif
 		
 			while (files.size() > _i) {
-				string path = _path + "/" + files[0];
+				std::string path = _path + "/" + files[0];
 				std::remove(path.c_str());
 				files.erase(files.begin());
 			}
