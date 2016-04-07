@@ -14,8 +14,7 @@ namespace coc {
 
 //-----------------------------------------------------------------------
 enum EaseFunction {
-    EASE_LINEAR,
-    EASE_BACK_IN,
+    EASE_BACK_IN = 0,
     EASE_BACK_OUT,
     EASE_BACK_INOUT,
     EASE_BOUNCE_IN,
@@ -44,7 +43,8 @@ enum EaseFunction {
     EASE_QUINT_INOUT,
     EASE_SINE_IN,
     EASE_SINE_OUT,
-    EASE_SINE_INOUT
+    EASE_SINE_INOUT,
+    EASE_LINEAR
 };
 
 //----------------------------------------------------------------------- Easing
