@@ -19,5 +19,6 @@ public:
 };
 
 bool PolyInside(float x, float y, std::vector<glm::vec2> poly); // ported from OF.
+std::vector<glm::vec2> PolyGrow(const std::vector<glm::vec2> & polySource, float amount, bool bClosed=false);
   
 };

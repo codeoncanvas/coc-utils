@@ -47,4 +47,12 @@ bool PolyInside(float x, float y, std::vector<glm::vec2> poly) {
 	else return true;
 }
 
+std::vector<glm::vec2> PolyGrow(const std::vector<glm::vec2> & polySource, float amount, bool bClosed) {
+
+    // TODO: still need to port this from ofxPoly.
+
+    std::vector<glm::vec2> poly;
+    return poly;
+}
+
 };
