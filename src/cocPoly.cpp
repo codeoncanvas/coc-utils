@@ -113,55 +113,51 @@ std::vector<glm::vec2> PolyNormals(const std::vector<glm::vec2> & poly, bool bCl
     return normals;
 }
 
-std::vector<glm::vec2> PolyGrow(const std::vector<glm::vec2> & poly, const std::vector<glm::vec2> & polyNormals, float amount) {
+std::vector<glm::vec2> PolyGrow(const std::vector<glm::vec2> & poly, float amount, bool bClosed) {
 
-    std::vector<glm::vec2> polyOut;
+    if(poly.size() < 2) {
+        return poly;
+    }
     
-//    if(poly.size() < 2) {
-//        return poly;
-//    }
-//    
-//    int numOfPoints = poly.size();
-//    bClosed = bClosed && (numOfPoints >= 3);
-//    
-//    glm::vec2 n0, n1;
-//    
-//    for(int i=0; i<numOfPoints; i++) {
-//
-//        int i1 = (i + 1) % numOfPoints;
-//        
-//        bool bEndings = false;
-//        bEndings = bEndings || (i == 0);
-//        bEndings = bEndings || (i == numOfPoints-1);
-//        bEndings = bEndings && (bClosed == false);
-//        
-//        if(bEndings == true) {
-//        
-//            const glm::vec2 & p0 = poly[i];
-//            const glm::vec2 & p1 = poly[i1];
-//            glm::vec2 n0 = poly.getNormalAtIndex(i);
-//            glm::vec2 point = p0 + (n0 * amount);
-//            polyOut.addVertex(point);
-//
-//            continue;
-//        }
-//        
-//        int i0 = i-1;
-//        if(i0 < 0) {
-//            i0 += numOfPoints;
-//        }
-//        
-//        const ofVec3f & p0 = points[i0];
-//        const ofVec3f & p1 = points[i];
-//        ofVec3f n0 = ofVec2f(p0 - p1).getPerpendicular();
-//        ofVec3f n1 = poly.getNormalAtIndex(i);
-//        
-//        float angle = ofVec2f(n0).angle(ofVec2f(n1));
-//        float length = amount / cos(angle * DEG_TO_RAD);
-//        
-//        ofVec3f point = p1 + (n1 * length);
-//        polyOut.addVertex(point);
-//    }
+    std::vector<glm::vec2> polyOut;
+    std::vector<glm::vec2> polyNormals = PolyNormals(poly, bClosed);
+    int numOfPoints = poly.size();
+    
+    bClosed = bClosed && (numOfPoints > 2);
+    
+    glm::vec2 point;
+    
+    for(int i=0; i<numOfPoints; i++) {
+    
+        const glm::vec2 & p1 = poly[i];
+        const glm::vec2 & n1 = polyNormals[i];
+    
+        bool bEndings = false;
+        bEndings = bEndings || (i == 0);
+        bEndings = bEndings || (i == numOfPoints-1);
+        bEndings = bEndings && (bClosed == false);
+        if(bEndings == true) {
+
+            point = p1 + (n1 * amount);
+            polyOut.push_back(point);
+            
+            continue;
+        }
+        
+        int i0 = i-1;
+        if(i0 < 0) {
+            i0 += numOfPoints;
+        }
+        
+        const glm::vec2 & p0 = poly[i0];
+        glm::vec2 n0 = coc::perpendicular(p0 - p1);
+        
+        float angle = atan2((n0.x * n1.y - n0.y * n1.x), (n0.x * n1.x + n0.y * n1.y));
+        float length = amount / cos(angle);
+        
+        point = p1 + (n1 * length);
+        polyOut.push_back(point);
+    }
     
     return polyOut;
 }

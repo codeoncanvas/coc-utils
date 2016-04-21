@@ -21,9 +21,8 @@ class PolyExampleApp : public App {
     vector<vec2> polyNormals;
     vector<vec2> polyOuter;
     vector<vec2> polyInner;
-    
-    float normalLenght = 40;
-    bool bClosed = false;
+    float polyThick = 10;
+    bool bPolyClosed = false;
 };
 
 void PolyExampleApp::setup() {
@@ -32,7 +31,9 @@ void PolyExampleApp::setup() {
 
 void PolyExampleApp::update() {
 
-    polyNormals = coc::PolyNormals(poly, bClosed);
+    polyNormals = coc::PolyNormals(poly, bPolyClosed);
+    polyOuter = coc::PolyGrow(poly, polyThick, bPolyClosed);
+    polyInner = coc::PolyGrow(poly, -polyThick, bPolyClosed);
 }
 
 void PolyExampleApp::draw() {
@@ -40,24 +41,31 @@ void PolyExampleApp::draw() {
     gl::clear(Color(0, 0, 0));
 
     int numOfPoints = poly.size();
-    int numOfNormals = coc::min(poly.size(), polyNormals.size());
 
 	for(int i=0; i<numOfPoints; i++) {
-        if(bClosed == false) {
+        if(bPolyClosed == false) {
             if(i == numOfPoints-1) {
                 break;
             }
         }
         int j = (i + 1) % numOfPoints;
-        const vec2 & p0 = poly[i];
-        const vec2 & p1 = poly[j];
-        gl::drawLine(p0, p1);
+        
+        gl::ScopedColor colorPush;
+        
+        gl::color(1.0, 1.0, 1.0);
+        gl::drawLine(poly[i], poly[j]);
+        
+        gl::color(1.0, 0.0, 1.0);
+        gl::drawLine(polyOuter[i], polyOuter[j]);
+        
+        gl::color(0.0, 1.0, 1.0);
+        gl::drawLine(polyInner[i], polyInner[j]);
     }
     
-	for(int i=0; i<numOfNormals; i++) {
+	for(int i=0; i<numOfPoints; i++) {
         const vec2 & p0 = poly[i];
         const vec2 & n0 = polyNormals[i];
-        gl::drawLine(p0, p0 + (n0 * vec2(normalLenght)));
+        gl::drawLine(p0, p0 + (n0 * vec2(polyThick)));
     }
     
 	for(int i=0; i<numOfPoints; i++) {
@@ -72,7 +80,7 @@ void PolyExampleApp::mouseDown( MouseEvent event ) {
 
 void PolyExampleApp::keyDown( KeyEvent event ) {
     if(event.getChar() == 'c' || event.getChar() == 'C') {
-        bClosed = !bClosed;
+        bPolyClosed = !bPolyClosed;
     }
 }
 
