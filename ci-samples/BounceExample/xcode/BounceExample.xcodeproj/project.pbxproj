@@ -17,16 +17,15 @@
 		00B9955A1B128DF400A5C623 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B995581B128DF400A5C623 /* IOKit.framework */; };
 		00B9955B1B128DF400A5C623 /* IOSurface.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B995591B128DF400A5C623 /* IOSurface.framework */; };
 		5323E6B20EAFCA74003A9687 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5323E6B10EAFCA74003A9687 /* CoreVideo.framework */; };
+		672641DD1CC8BE5100941780 /* cocCore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 672641D51CC8BE5100941780 /* cocCore.cpp */; };
+		672641DE1CC8BE5100941780 /* cocMath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 672641D71CC8BE5100941780 /* cocMath.cpp */; };
+		672641DF1CC8BE5100941780 /* cocRandom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 672641D91CC8BE5100941780 /* cocRandom.cpp */; };
+		672641E01CC8BE5100941780 /* cocRect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 672641DB1CC8BE5100941780 /* cocRect.cpp */; };
+		672641F11CC8BE6F00941780 /* cocBounce.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 672641E21CC8BE6F00941780 /* cocBounce.cpp */; };
+		672641F21CC8BE6F00941780 /* cocBounce2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 672641E41CC8BE6F00941780 /* cocBounce2D.cpp */; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
-		7803A8706FC24017835F003C /* cocBounce2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 03865060E16B4D0A94E66A7A /* cocBounce2D.cpp */; };
-		62CF8DE5B5574D7192D91E05 /* cocBounce.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F5C3285CE0CC4155B8E8DA89 /* cocBounce.cpp */; };
-		35248A4A3B3E44DBAA755F3F /* cocBounce2D.h in Headers */ = {isa = PBXBuildFile; fileRef = 887CFD5BCF744ACF9DB0469E /* cocBounce2D.h */; };
-		A8CF07C2AA0C4096A7B0772B /* cocBounce.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A3275671D6C4B309433B749 /* cocBounce.h */; };
-		A0B22DEAC62A45D4A2C9B0E1 /* cocCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 922B9F8E2D6E4664BB0F9CF1 /* cocCore.h */; };
-		0A12452CC679420EB76530E1 /* BounceExample_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = FC563FACD128420CAB290039 /* BounceExample_Prefix.pch */; };
-		E4FCAAA47CCC4842A1E826DB /* CinderApp.icns in Resources */ = {isa = PBXBuildFile; fileRef = D2FBCFEF5A654B92958F1A71 /* CinderApp.icns */; };
-		F918075441F64CF0A680A296 /* Resources.h in Headers */ = {isa = PBXBuildFile; fileRef = 46816359B64E43E09F30E02F /* Resources.h */; };
 		C1960F7AC526427288B2CD60 /* BounceExampleApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6BAC01B40224C34AB9481DB /* BounceExampleApp.cpp */; };
+		E4FCAAA47CCC4842A1E826DB /* CinderApp.icns in Resources */ = {isa = PBXBuildFile; fileRef = D2FBCFEF5A654B92958F1A71 /* CinderApp.icns */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,18 +41,26 @@
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		46816359B64E43E09F30E02F /* Resources.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Resources.h; path = ../include/Resources.h; sourceTree = "<group>"; };
 		5323E6B10EAFCA74003A9687 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = /System/Library/Frameworks/CoreVideo.framework; sourceTree = "<absolute>"; };
+		672641D41CC8BE5100941780 /* cocConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cocConstants.h; sourceTree = "<group>"; };
+		672641D51CC8BE5100941780 /* cocCore.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cocCore.cpp; sourceTree = "<group>"; };
+		672641D61CC8BE5100941780 /* cocCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cocCore.h; sourceTree = "<group>"; };
+		672641D71CC8BE5100941780 /* cocMath.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cocMath.cpp; sourceTree = "<group>"; };
+		672641D81CC8BE5100941780 /* cocMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cocMath.h; sourceTree = "<group>"; };
+		672641D91CC8BE5100941780 /* cocRandom.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cocRandom.cpp; sourceTree = "<group>"; };
+		672641DA1CC8BE5100941780 /* cocRandom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cocRandom.h; sourceTree = "<group>"; };
+		672641DB1CC8BE5100941780 /* cocRect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cocRect.cpp; sourceTree = "<group>"; };
+		672641DC1CC8BE5100941780 /* cocRect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cocRect.h; sourceTree = "<group>"; };
+		672641E21CC8BE6F00941780 /* cocBounce.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cocBounce.cpp; sourceTree = "<group>"; };
+		672641E31CC8BE6F00941780 /* cocBounce.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cocBounce.h; sourceTree = "<group>"; };
+		672641E41CC8BE6F00941780 /* cocBounce2D.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = cocBounce2D.cpp; sourceTree = "<group>"; };
+		672641E51CC8BE6F00941780 /* cocBounce2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cocBounce2D.h; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* BounceExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BounceExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		D6BAC01B40224C34AB9481DB /* BounceExampleApp.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.cpp; path = ../src/BounceExampleApp.cpp; sourceTree = "<group>"; name = BounceExampleApp.cpp; };
-		46816359B64E43E09F30E02F /* Resources.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ../include/Resources.h; sourceTree = "<group>"; name = Resources.h; };
-		D2FBCFEF5A654B92958F1A71 /* CinderApp.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = ../resources/CinderApp.icns; sourceTree = "<group>"; name = CinderApp.icns; };
-		F073DF4E387A41D8AE4BB231 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; name = Info.plist; };
-		FC563FACD128420CAB290039 /* BounceExample_Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = "\"\""; path = BounceExample_Prefix.pch; sourceTree = "<group>"; name = BounceExample_Prefix.pch; };
-		922B9F8E2D6E4664BB0F9CF1 /* cocCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "../../../../../../Cinder/blocks/coc-core/src/cocCore.h"; sourceTree = "<group>"; name = cocCore.h; };
-		0A3275671D6C4B309433B749 /* cocBounce.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "../../../../../../Cinder/blocks/coc-utils/src/cocBounce.h"; sourceTree = "<group>"; name = cocBounce.h; };
-		887CFD5BCF744ACF9DB0469E /* cocBounce2D.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "../../../../../../Cinder/blocks/coc-utils/src/cocBounce2D.h"; sourceTree = "<group>"; name = cocBounce2D.h; };
-		F5C3285CE0CC4155B8E8DA89 /* cocBounce.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.cpp; path = "../../../../../../Cinder/blocks/coc-utils/src/cocBounce.cpp"; sourceTree = "<group>"; name = cocBounce.cpp; };
-		03865060E16B4D0A94E66A7A /* cocBounce2D.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.cpp; path = "../../../../../../Cinder/blocks/coc-utils/src/cocBounce2D.cpp"; sourceTree = "<group>"; name = cocBounce2D.cpp; };
+		D2FBCFEF5A654B92958F1A71 /* CinderApp.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = CinderApp.icns; path = ../resources/CinderApp.icns; sourceTree = "<group>"; };
+		D6BAC01B40224C34AB9481DB /* BounceExampleApp.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.cpp; name = BounceExampleApp.cpp; path = ../src/BounceExampleApp.cpp; sourceTree = "<group>"; };
+		F073DF4E387A41D8AE4BB231 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FC563FACD128420CAB290039 /* BounceExample_Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = "\"\""; path = BounceExample_Prefix.pch; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +85,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		01B97315FEAEA392516A2CEA /* Blocks */ = {
+			isa = PBXGroup;
+			children = (
+				5E1687DF9B19459EB9368165 /* CoC-Core */,
+				DDB63C08EFB44F7C8550CA78 /* CoC-Utils */,
+			);
+			name = Blocks;
+			sourceTree = "<group>";
+		};
 		080E96DDFE201D6D7F000001 /* Source */ = {
 			isa = PBXGroup;
 			children = (
@@ -134,50 +150,6 @@
 			name = BounceExample;
 			sourceTree = "<group>";
 		};
-		1E3B2AFEE32C411E96115040 /* src */ = {
-			isa = PBXGroup;
-			children = (
-				922B9F8E2D6E4664BB0F9CF1 /* cocCore.h */,
-			);
-			name = src;
-			sourceTree = "<group>";
-		};
-		5E1687DF9B19459EB9368165 /* CoC-Core */ = {
-			isa = PBXGroup;
-			children = (
-				1E3B2AFEE32C411E96115040 /* src */,
-			);
-			name = "CoC-Core";
-			sourceTree = "<group>";
-		};
-		045C9888AA8D4D74B8C0339E /* src */ = {
-			isa = PBXGroup;
-			children = (
-				0A3275671D6C4B309433B749 /* cocBounce.h */,
-				887CFD5BCF744ACF9DB0469E /* cocBounce2D.h */,
-				F5C3285CE0CC4155B8E8DA89 /* cocBounce.cpp */,
-				03865060E16B4D0A94E66A7A /* cocBounce2D.cpp */,
-			);
-			name = src;
-			sourceTree = "<group>";
-		};
-		DDB63C08EFB44F7C8550CA78 /* CoC-Utils */ = {
-			isa = PBXGroup;
-			children = (
-				045C9888AA8D4D74B8C0339E /* src */,
-			);
-			name = "CoC-Utils";
-			sourceTree = "<group>";
-		};
-		01B97315FEAEA392516A2CEA /* Blocks */ = {
-			isa = PBXGroup;
-			children = (
-				5E1687DF9B19459EB9368165 /* CoC-Core */,
-				DDB63C08EFB44F7C8550CA78 /* CoC-Utils */,
-			);
-			name = Blocks;
-			sourceTree = "<group>";
-		};
 		29B97315FDCFA39411CA2CEA /* Headers */ = {
 			isa = PBXGroup;
 			children = (
@@ -203,6 +175,51 @@
 				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5E1687DF9B19459EB9368165 /* CoC-Core */ = {
+			isa = PBXGroup;
+			children = (
+				672641D31CC8BE5100941780 /* src */,
+			);
+			name = "CoC-Core";
+			path = "../../../../coc-core";
+			sourceTree = "<group>";
+		};
+		672641D31CC8BE5100941780 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				672641D41CC8BE5100941780 /* cocConstants.h */,
+				672641D51CC8BE5100941780 /* cocCore.cpp */,
+				672641D61CC8BE5100941780 /* cocCore.h */,
+				672641D71CC8BE5100941780 /* cocMath.cpp */,
+				672641D81CC8BE5100941780 /* cocMath.h */,
+				672641D91CC8BE5100941780 /* cocRandom.cpp */,
+				672641DA1CC8BE5100941780 /* cocRandom.h */,
+				672641DB1CC8BE5100941780 /* cocRect.cpp */,
+				672641DC1CC8BE5100941780 /* cocRect.h */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		672641E11CC8BE6F00941780 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				672641E21CC8BE6F00941780 /* cocBounce.cpp */,
+				672641E31CC8BE6F00941780 /* cocBounce.h */,
+				672641E41CC8BE6F00941780 /* cocBounce2D.cpp */,
+				672641E51CC8BE6F00941780 /* cocBounce2D.h */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		DDB63C08EFB44F7C8550CA78 /* CoC-Utils */ = {
+			isa = PBXGroup;
+			children = (
+				672641E11CC8BE6F00941780 /* src */,
+			);
+			name = "CoC-Utils";
+			path = ../../..;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -231,6 +248,8 @@
 /* Begin PBXProject section */
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "BounceExample" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
@@ -266,9 +285,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				672641E01CC8BE5100941780 /* cocRect.cpp in Sources */,
+				672641F21CC8BE6F00941780 /* cocBounce2D.cpp in Sources */,
+				672641F11CC8BE6F00941780 /* cocBounce.cpp in Sources */,
+				672641DF1CC8BE5100941780 /* cocRandom.cpp in Sources */,
 				C1960F7AC526427288B2CD60 /* BounceExampleApp.cpp in Sources */,
-				62CF8DE5B5574D7192D91E05 /* cocBounce.cpp in Sources */,
-				7803A8706FC24017835F003C /* cocBounce2D.cpp in Sources */,
+				672641DD1CC8BE5100941780 /* cocCore.cpp in Sources */,
+				672641DE1CC8BE5100941780 /* cocMath.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,18 +301,20 @@
 		C01FCF4B08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CINDER_PATH = ../../../../../;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEAD_CODE_STRIPPING = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = BounceExample_Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
+					COC_CI,
 				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = BounceExample_Prefix.pch;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
@@ -304,6 +329,7 @@
 		C01FCF4C08A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CINDER_PATH = ../../../../../;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -311,12 +337,13 @@
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
 				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = BounceExample_Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"NDEBUG=1",
 					"$(inherited)",
+					COC_CI,
 				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = BounceExample_Prefix.pch;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
@@ -333,7 +360,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CINDER_PATH = "../../../../../../Cinder";
+				CINDER_PATH = ../../../../../../Cinder;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++11";
 				CLANG_CXX_LIBRARY = "libc++";
 				ENABLE_TESTABILITY = YES;
@@ -351,7 +378,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CINDER_PATH = "../../../../../../Cinder";
+				CINDER_PATH = ../../../../../../Cinder;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++11";
 				CLANG_CXX_LIBRARY = "libc++";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
