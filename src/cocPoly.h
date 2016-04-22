@@ -26,5 +26,11 @@ std::vector<glm::vec2> PolyNormals(const std::vector<glm::vec2> & poly,
 std::vector<glm::vec2> PolyGrow(const std::vector<glm::vec2> & poly,
                                 float amount,
                                 bool bClosed = false);
-  
+
+std::vector<glm::vec2> PolyArc(glm::vec2 centre,
+                               float radius,
+                               int resolution=100,
+                               float angleStart=0,
+                               float angleEnd=M_PI*2);
+
 };

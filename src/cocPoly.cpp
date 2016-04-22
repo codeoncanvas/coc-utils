@@ -19,6 +19,7 @@ Poly::~Poly() {
     //
 }
 
+//--------------------------------------------------------------
 bool PolyInside(float x, float y, std::vector<glm::vec2> poly) {
 	int counter = 0;
 	int i;
@@ -48,6 +49,7 @@ bool PolyInside(float x, float y, std::vector<glm::vec2> poly) {
 	else return true;
 }
 
+//--------------------------------------------------------------
 std::vector<glm::vec2> PolyNormals(const std::vector<glm::vec2> & poly, bool bClosed) {
 
     std::vector<glm::vec2> normals;
@@ -113,6 +115,7 @@ std::vector<glm::vec2> PolyNormals(const std::vector<glm::vec2> & poly, bool bCl
     return normals;
 }
 
+//--------------------------------------------------------------
 std::vector<glm::vec2> PolyGrow(const std::vector<glm::vec2> & poly, float amount, bool bClosed) {
 
     if(poly.size() < 2) {
@@ -156,6 +159,22 @@ std::vector<glm::vec2> PolyGrow(const std::vector<glm::vec2> & poly, float amoun
         float length = amount / cos(angle);
         
         point = p1 + (n1 * length);
+        polyOut.push_back(point);
+    }
+    
+    return polyOut;
+}
+
+//--------------------------------------------------------------
+std::vector<glm::vec2> PolyArc(glm::vec2 centre, float radius, int resolution, float angleStart, float angleEnd) {
+
+    std::vector<glm::vec2> polyOut;
+
+    for(int i=0; i<resolution; i++) {
+        float angle = coc::map(i, 0, resolution-1, angleStart, angleEnd) - angleStart;
+        glm::vec2 point = coc::direction(angle, angleStart);
+        point *= glm::vec2(radius);
+        point += centre;
         polyOut.push_back(point);
     }
     
