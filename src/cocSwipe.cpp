@@ -188,7 +188,7 @@ void Swipe::update(double _optionalTimeElapsedSinceLastUpdateInSeconds) {
         point.velocityScale = length(point.velocity) / swipePixelVelocityThreshold;
         
         point.angleDeg = coc::angleClockwise(point.velocity);
-        point.angleDeg = (point.angleDeg / (float)PI) * 180.0;
+        point.angleDeg = (point.angleDeg / (float)M_PI) * 180.0;
     }
     
     //----------------------------------------------------------
