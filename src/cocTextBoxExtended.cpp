@@ -1,7 +1,4 @@
-//Cribbed from cinder/Text
-
 #include "cocTextBoxExtended.h"
-#include "cinder/Text.h"
 #include "cinder/ip/Fill.h"
 #include "cinder/ip/Premultiply.h"
 #include "cinder/Utilities.h"
@@ -16,19 +13,7 @@
 #include <CoreText/CoreText.h>
 #endif
 #elif defined( CINDER_MSW )
-#include <Windows.h>
-	#define max(a, b) (((a) > (b)) ? (a) : (b))
-	#define min(a, b) (((a) < (b)) ? (a) : (b))
-	#include <gdiplus.h>
-	#undef min
-	#undef max
-	#include "cinder/msw/CinderMsw.h"
-	#include "cinder/msw/CinderMswGdiPlus.h"
-	#pragma comment(lib, "gdiplus")
-	#include "cinder/Unicode.h"
-
-static const float MAX_SIZE = 1000000.0f;
-
+//
 #endif
 
 namespace coc {
@@ -37,7 +22,44 @@ using namespace ci;
 using namespace ci::app;
 using namespace std;
 
+void TextBoxExtended::generateTexture() {
+	texPreLeading = ci::gl::Texture2d::create( render() );
+}
 
+void TextBoxExtended::generateLines() {
+
+	if (!texPreLeading) generateTexture();
+
+	std::vector<std::pair<uint16_t,ci::vec2> >pairs = measureGlyphs();
+
+	int counter = 0;
+	float y = -99999;
+
+	for (auto p : pairs ) {
+		if ( p.second.y > y) {
+			counter++;
+			y = p.second.y;
+		}
+	}
+
+	numLines = counter;
+
+}
+
+void TextBoxExtended::drawWithLeading( float _leadingOffset ) {
+
+	if (!numLines) generateLines();
+
+	lineHeight = (float) texPreLeading->getHeight() / numLines;
+	for (int i=0; i<numLines; i++) {
+		Area src = Area(0,i*lineHeight,texPreLeading->getWidth(),i*lineHeight+lineHeight);
+		float offset = i*_leadingOffset;
+		Rectf dst = Rectf(0,i*lineHeight+offset,texPreLeading->getWidth(),i*lineHeight+lineHeight+offset);
+		gl::draw( texPreLeading, src, dst);
+	}
+}
+
+// CRIBBED FROM cinder/Text.cpp :
 
 #if defined( CINDER_COCOA )
 
@@ -120,14 +142,10 @@ void TextBoxExtended::createLinesWithLeadingOffset( float leadingOffset ) const
 
 #elif defined( CINDER_MSW )
 
-Surface    TextBoxExtended::renderWithLeadingOffset( vec2 offset, float leadingOffset = 0.0f )
+Surface TextBoxExtended::renderWithLeadingOffset( vec2 offset, float leadingOffset = 0.0f )
 {
-	//
-}
-
-void TextBoxExtended::createLinesWithLeadingOffset( float leadingOffset = 0.0f ) const
-{
-	//
+	CI_LOG_E( "Does not work on windows" );
+	return render();
 }
 
 #endif

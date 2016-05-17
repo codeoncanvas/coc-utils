@@ -8,13 +8,7 @@
 
 #pragma once
 
-#include "cinder/Cinder.h"
-#include "cinder/Surface.h"
-#include "cinder/Font.h"
-#include "cinder/Vector.h"
-#include <vector>
-#include <deque>
-#include <string>
+#include "cinder/Text.h"
 
 
 namespace coc {
@@ -23,11 +17,24 @@ class TextBoxExtended : public ci::TextBox
 {
 public:
 
+	void generateTexture();
+	void generateLines();
+	void drawWithLeading( float _leadingOffset );
+
+	int getNumLines() { return numLines; }
+	float getLineHeight() { return lineHeight; }
+
 	ci::Surface    renderWithLeadingOffset( ci::vec2 offset, float leadingOffset = 0.0f );
 
 private:
 
+	int                     numLines 		= 0;
+	float                   lineHeight 		= 0;
+	ci::gl::TextureRef      texPreLeading 	= nullptr;
+
+#if defined( CINDER_COCOA )
 	void 			createLinesWithLeadingOffset( float leadingOffset = 0.0f ) const;
+#endif
 
 };//TextBoxExtended
 
