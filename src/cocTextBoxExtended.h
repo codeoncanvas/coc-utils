@@ -17,6 +17,8 @@ class TextBoxExtended : public ci::TextBox
 {
 public:
 
+	~TextBoxExtended() { texPreLeading.reset(); }
+
 	void generateTexture();
 	void generateLines();
 	void drawWithLeading( float _leadingOffset );
