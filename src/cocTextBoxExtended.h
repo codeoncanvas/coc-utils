@@ -15,12 +15,13 @@ public:
 
 	void generateTexture();
 	void generateLines();
-	void drawWithLeading( float _leadingOffset );
+	void drawWithLeading( ci::vec2 _pos, float _leadingOffset );
 
 	int getNumLines() { return numLines; }
 	float getLineHeight() { return lineHeight; }
+	ci::gl::TextureRef getTextureRef() { return texPreLeading; }
 
-	ci::Surface    renderWithLeadingOffset( ci::vec2 offset, float leadingOffset = 0.0f );
+	ci::Surface    renderWithLeadingOffset( ci::vec2 offset, float leadingOffset );
 
 private:
 
