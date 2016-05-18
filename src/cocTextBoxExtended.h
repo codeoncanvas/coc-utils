@@ -1,13 +1,7 @@
-//Cribbed from cinder/Text
-
-/*
- * Usage:
- * vec2 offsetPos(0,0);
- * textTexture = gl::Texture::create( tbox.renderWithLeadingOffset( offsetPos, -3.0f) );
- */
-
 #pragma once
 
+#include "cinder/gl/gl.h"
+#include "cinder/gl/Texture.h"
 #include "cinder/Text.h"
 
 

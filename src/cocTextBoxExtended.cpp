@@ -3,7 +3,7 @@
 #include "cinder/ip/Premultiply.h"
 #include "cinder/Utilities.h"
 #include "cinder/Noncopyable.h"
-
+#include "cinder/Log.h"
 
 #if defined( CINDER_COCOA )
 #include "cinder/cocoa/CinderCocoa.h"
@@ -19,7 +19,6 @@
 namespace coc {
 
 using namespace ci;
-using namespace ci::app;
 using namespace std;
 
 void TextBoxExtended::generateTexture() {
@@ -142,7 +141,7 @@ void TextBoxExtended::createLinesWithLeadingOffset( float leadingOffset ) const
 
 #elif defined( CINDER_MSW )
 
-Surface TextBoxExtended::renderWithLeadingOffset( vec2 offset, float leadingOffset = 0.0f )
+Surface TextBoxExtended::renderWithLeadingOffset( vec2 offset, float leadingOffset )
 {
 	CI_LOG_E( "Does not work on windows" );
 	return render();
