@@ -49,23 +49,32 @@ void TextBoxExtended::drawWithLeading( ci::vec2 _pos, float _leadingOffset ) {
 
 	if (!numLines) generateLines();
 
-	lineHeight = (float) texPreLeading->getHeight() / numLines;
-	for (int i=0; i<numLines; i++) {
-		Area src = Area(
-			0,
-			i*lineHeight,
-			texPreLeading->getWidth(),
-			i*lineHeight+lineHeight
+	if (numLines > 1) {
+		lineHeight = (float) texPreLeading->getHeight() / numLines;
+		for (int i=0; i<numLines; i++) {
+			Area src = Area(
+					0,
+					i*lineHeight,
+					texPreLeading->getWidth(),
+					i*lineHeight+lineHeight
 			);
-		float offset = i*_leadingOffset;
-		Rectf dst = Rectf(
-			_pos.x,
-			_pos.y+i*lineHeight+offset,
-			_pos.x+texPreLeading->getWidth(),
-			_pos.y+i*lineHeight+lineHeight+offset
+			float offset = i*_leadingOffset;
+			Rectf dst = Rectf(
+					_pos.x,
+					_pos.y+i*lineHeight+offset,
+					_pos.x+texPreLeading->getWidth(),
+					_pos.y+i*lineHeight+lineHeight+offset
 			);
-		gl::draw( texPreLeading, src, dst);
+			gl::draw( texPreLeading, src, dst);
+		}
+
+		totalHeight = numLines*lineHeight + numLines*_leadingOffset;
 	}
+	else {
+		gl::draw( texPreLeading, _pos);
+		totalHeight = texPreLeading->getHeight();
+	}
+
 }
 
 // CRIBBED FROM cinder/Text.cpp :

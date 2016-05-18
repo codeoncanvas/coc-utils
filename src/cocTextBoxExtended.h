@@ -11,7 +11,8 @@ class TextBoxExtended : public ci::TextBox
 {
 public:
 
-	~TextBoxExtended() { texPreLeading.reset(); }
+	~TextBoxExtended() { reset(); }
+	void reset() {  texPreLeading.reset(); }
 
 	void generateTexture();
 	void generateLines();
@@ -19,12 +20,14 @@ public:
 
 	int getNumLines() { return numLines; }
 	float getLineHeight() { return lineHeight; }
+	int getTotalHeight() { return totalHeight; }
 	ci::gl::TextureRef getTextureRef() { return texPreLeading; }
 
 	ci::Surface    renderWithLeadingOffset( ci::vec2 offset, float leadingOffset );
 
 private:
 
+	int 					totalHeight;
 	int                     numLines 		= 0;
 	float                   lineHeight 		= 0;
 	ci::gl::TextureRef      texPreLeading 	= nullptr;
