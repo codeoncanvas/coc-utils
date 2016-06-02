@@ -275,7 +275,7 @@ float Swipe::getSwipeTime() const {
 
 //--------------------------------------------------------------
 SwipeDirection Swipe::getDirectionFromAngle(float angleDeg) const {
-    SwipeDirection dir;
+    SwipeDirection dir = SwipeDirectionUndefined;
     if((angleDeg > 315 && angleDeg <= 360) || (angleDeg >= 0 && angleDeg <= 45)) {
         dir = SwipeDirectionUp;
     } else if(angleDeg > 45 && angleDeg <= 135) {
