@@ -8,6 +8,14 @@
 
 #include "cocGLUtils.h"
 
+#ifdef COC_CI
+#include "cinder/gl/platform.h"
+#endif
+
+#ifdef COC_OF
+// TODO: include gl libs for OF.
+#endif
+
 namespace coc {
 
 void enableAlphaBlendingPremult() {
