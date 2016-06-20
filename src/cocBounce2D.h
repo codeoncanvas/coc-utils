@@ -8,6 +8,7 @@
 
 #pragma once
 
+#include "cocCore.h"
 #include "cocBounce.h"
 
 namespace coc {
