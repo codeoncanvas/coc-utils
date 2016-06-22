@@ -1,3 +1,22 @@
+/**
+ *
+ *      ┌─┐╔═╗┌┬┐┌─┐
+ *      │  ║ ║ ││├┤
+ *      └─┘╚═╝─┴┘└─┘
+ *   ┌─┐┌─┐╔╗╔┬  ┬┌─┐┌─┐
+ *   │  ├─┤║║║└┐┌┘├─┤└─┐
+ *   └─┘┴ ┴╝╚╝ └┘ ┴ ┴└─┘
+ *
+ * Copyright (c) 2016 Code on Canvas Pty Ltd, http://CodeOnCanvas.cc
+ *
+ * This software is distributed under the MIT license
+ * https://tldrlegal.com/license/mit-license
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code
+ *
+ **/
+
 #include "cinder/app/App.h"
 #include "cinder/app/RendererGl.h"
 #include "cinder/gl/gl.h"
@@ -14,7 +33,7 @@ class BounceExampleApp : public App {
 	void mouseDown( MouseEvent event ) override;
 	void update() override;
 	void draw() override;
-    
+
     coc::Bounce2D bounce;
 };
 
@@ -22,7 +41,7 @@ void BounceExampleApp::setup()
 {
     int cx = getWindowSize().x * 0.5;
     int cy = getWindowSize().y * 0.5;
-    
+
     bounce.center(cx, cy);
     bounce.position(cx, cy);
 }
@@ -40,7 +59,7 @@ void BounceExampleApp::update()
 void BounceExampleApp::draw()
 {
 	gl::clear( Color( 0, 0, 0 ) );
-    
+
     gl::drawSolidCircle(bounce.position(), 100);
 }
 
