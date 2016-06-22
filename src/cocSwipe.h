@@ -1,8 +1,21 @@
-//
-//  cocTimer.h
-//  Created by Lukasz Karluk on 10/10/2015.
-//  http://codeoncanvas.cc
-//
+/**
+ *
+ *      ┌─┐╔═╗┌┬┐┌─┐
+ *      │  ║ ║ ││├┤
+ *      └─┘╚═╝─┴┘└─┘
+ *   ┌─┐┌─┐╔╗╔┬  ┬┌─┐┌─┐
+ *   │  ├─┤║║║└┐┌┘├─┤└─┐
+ *   └─┘┴ ┴╝╚╝ └┘ ┴ ┴└─┘
+ *
+ * Copyright (c) 2015-2016 Code on Canvas Pty Ltd, http://CodeOnCanvas.cc
+ *
+ * This software is distributed under the MIT license
+ * https://tldrlegal.com/license/mit-license
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code
+ *
+ **/
 
 #pragma once
 
@@ -37,7 +50,7 @@ public:
         angleDeg = 0;
         time = 0;
     }
-    
+
     Type type;
     glm::vec2 position;
     glm::vec2 velocity;
@@ -48,20 +61,20 @@ public:
 
 //--------------------------------------------------------------
 class Swipe {
-    
+
 public:
-    
+
     Swipe();
     ~Swipe();
-    
+
     void setSwipeArea(const coc::Rect & rect);
     void setSwipeArea(float x, float y, float w, float h);
     void setSwipePixelDistanceThreshold(float value);
     void setSwipePixelVelocityThreshold(float value);
-    
+
     void update(double optionalTimeElapsedSinceLastUpdateInSeconds=-1);
     void reset();
-    
+
     void pointDown(float x, float y);
     void pointMoved(float x, float y);
     void pointUp(float x, float y);
@@ -72,22 +85,22 @@ public:
 
     const std::vector<SwipePoint> & getPoints() const;
     float getSwipeTime() const;
-    
+
 protected:
 
     SwipeDirection getDirectionFromAngle(float angleDeg) const;
-    
+
     std::vector<SwipePoint> points;
     std::vector<SwipePoint> pointsNew;
     coc::Rect swipeArea;
     float swipePixelDistanceThreshold;
     float swipePixelVelocityThreshold;
     float swipeTime;
-    
+
     SwipeDirection gestureDirection;
     int gestureStartIndex;
     bool bGestureFoundNew;
-    
+
 };
 
 }

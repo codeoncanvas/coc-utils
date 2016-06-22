@@ -1,8 +1,21 @@
-//
-//  cocTimer.h
-//  Created by Lukasz Karluk on 10/10/2015.
-//  http://codeoncanvas.cc
-//
+/**
+ *
+ *      ┌─┐╔═╗┌┬┐┌─┐
+ *      │  ║ ║ ││├┤
+ *      └─┘╚═╝─┴┘└─┘
+ *   ┌─┐┌─┐╔╗╔┬  ┬┌─┐┌─┐
+ *   │  ├─┤║║║└┐┌┘├─┤└─┐
+ *   └─┘┴ ┴╝╚╝ └┘ ┴ ┴└─┘
+ *
+ * Copyright (c) 2015-2016 Code on Canvas Pty Ltd, http://CodeOnCanvas.cc
+ *
+ * This software is distributed under the MIT license
+ * https://tldrlegal.com/license/mit-license
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code
+ *
+ **/
 
 #include "cocSwipe.h"
 
@@ -16,7 +29,7 @@ Swipe::Swipe() {
 
     swipePixelDistanceThreshold = 50;
     swipePixelVelocityThreshold = 100;
-    
+
     reset();
 }
 
@@ -68,47 +81,47 @@ void Swipe::update(double _optionalTimeElapsedSinceLastUpdateInSeconds) {
             }
         }
     }
-    
+
     if(bSwipeStopped == true) {
         return;
     }
 
     bool bSwipeStarted = true;
     bSwipeStarted = bSwipeStarted && (points.size() > 0);
-    
+
     bool bSwipeStartedNow = true;
     bSwipeStartedNow = bSwipeStartedNow && (bSwipeStarted == false);
     bSwipeStartedNow = bSwipeStartedNow && (pointsNew.size() > 0);
     if(bSwipeStartedNow == true) {
         bSwipeStartedNow = bSwipeStartedNow && (pointsNew[0].type == SwipePoint::TypeDown);
     }
-    
+
     bool bUpdate = false;
     bUpdate = bUpdate || (bSwipeStarted == true);
     bUpdate = bUpdate || (bSwipeStartedNow == true);
     if(bUpdate == false) {
         return;
     }
-    
+
     double timeElapsedSinceLastUpdateInSeconds = _optionalTimeElapsedSinceLastUpdateInSeconds;
     if(timeElapsedSinceLastUpdateInSeconds < 0.0) {
         timeElapsedSinceLastUpdateInSeconds = coc::getTimeElapsedSinceLastFrame();
     }
-    
+
     if(bSwipeStartedNow == true) {
         swipeTime = 0;
     } else {
         swipeTime += timeElapsedSinceLastUpdateInSeconds;
     }
-    
+
     if(pointsNew.size() == 0) {
         return;
     }
-    
+
     //----------------------------------------------------------
     bool bFound = false;
     SwipePoint pointNew;
-    
+
     if(bSwipeStartedNow == true) {
 
         // look for touch down.
@@ -120,14 +133,14 @@ void Swipe::update(double _optionalTimeElapsedSinceLastUpdateInSeconds) {
                 break;
             }
         }
-    
+
     } else {
-    
+
         // look for touch up first.
-        
+
         for(int i=pointsNew.size()-1; i>=0; i--) {
             if(pointsNew[i].type == SwipePoint::TypeUp) {
-            
+
                 bool bSame = false;
                 if(points.size() > 0) {
                     const SwipePoint & pointLast = points[points.size()-1];
@@ -139,19 +152,19 @@ void Swipe::update(double _optionalTimeElapsedSinceLastUpdateInSeconds) {
                     // remove last move point and replace with up point.
                     points.erase(points.begin() + points.size()-1);
                 }
-            
+
                 pointNew = pointsNew[i];
                 bFound = true;
                 break;
             }
         }
-        
+
         // look for touch moved first.
-        
+
         if(bFound == false) {
             for(int i=pointsNew.size()-1; i>=0; i--) {
                 if(pointsNew[i].type == SwipePoint::TypeMoved) {
-                    
+
                     bool bSame = false;
                     if(points.size() > 0) {
                         const SwipePoint & pointLast = points[points.size()-1];
@@ -162,7 +175,7 @@ void Swipe::update(double _optionalTimeElapsedSinceLastUpdateInSeconds) {
                     if(bSame == true) {
                         continue;
                     }
-                
+
                     pointNew = pointsNew[i];
                     bFound = true;
                     break;
@@ -170,55 +183,55 @@ void Swipe::update(double _optionalTimeElapsedSinceLastUpdateInSeconds) {
             }
         }
     }
-    
+
     pointsNew.clear();
-    
+
     if(bFound == false) {
         return;
     }
-    
+
     points.push_back(pointNew);
     SwipePoint & point = points.back();
     point.time = swipeTime;
-    
+
     if(points.size() > 1) {
-    
+
         const SwipePoint & pointLast = points[points.size()-2];
         point.velocity = (point.position - pointLast.position) / (point.time - pointLast.time);
         point.velocityScale = length(point.velocity) / swipePixelVelocityThreshold;
-        
+
         point.angleDeg = coc::angleClockwise(point.velocity);
         point.angleDeg = (point.angleDeg / (float)M_PI) * 180.0;
     }
-    
+
     //----------------------------------------------------------
     if(gestureStartIndex == -1) {
         gestureStartIndex = points.size() - 1;
     }
-    
+
     SwipePoint gesturePointStart;
     SwipeDirection gestureDirectionStart;
-    
+
     for(int i=gestureStartIndex; i<points.size(); i++) {
         if(i == gestureStartIndex) {
             gesturePointStart = points[i];
             gestureDirectionStart = getDirectionFromAngle(gesturePointStart.angleDeg);
         }
-        
+
         const SwipePoint & gesturePoint = points[i];
         if(gesturePoint.velocityScale < 1.0) {
             gestureDirection = SwipeDirectionUndefined;
             gestureStartIndex = -1;
             break;
         }
-        
+
         SwipeDirection gestureDirectionNew = getDirectionFromAngle(gesturePoint.angleDeg);
         if(gestureDirectionNew != gestureDirectionStart) {
             gestureDirection = SwipeDirectionUndefined;
             gestureStartIndex = -1;
             break;
         }
-        
+
         float dist = distance(gesturePoint.position, gesturePointStart.position);
         if(dist >= swipePixelDistanceThreshold) {
             bGestureFoundNew = gestureDirection != gestureDirectionNew;
@@ -228,10 +241,10 @@ void Swipe::update(double _optionalTimeElapsedSinceLastUpdateInSeconds) {
 }
 
 void Swipe::reset() {
-    
+
     points.clear();
     swipeTime = 0;
-    
+
     gestureDirection = SwipeDirectionUndefined;
     gestureStartIndex = -1;
 }
