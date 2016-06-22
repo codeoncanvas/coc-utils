@@ -1,3 +1,22 @@
+/**
+ *
+ *      ┌─┐╔═╗┌┬┐┌─┐
+ *      │  ║ ║ ││├┤
+ *      └─┘╚═╝─┴┘└─┘
+ *   ┌─┐┌─┐╔╗╔┬  ┬┌─┐┌─┐
+ *   │  ├─┤║║║└┐┌┘├─┤└─┐
+ *   └─┘┴ ┴╝╚╝ └┘ ┴ ┴└─┘
+ *
+ * Copyright (c) 2016 Code on Canvas Pty Ltd, http://CodeOnCanvas.cc
+ *
+ * This software is distributed under the MIT license
+ * https://tldrlegal.com/license/mit-license
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code
+ *
+ **/
+
 /*
 
 Helper functions to use in conjunction with Cinder and OF loggers
@@ -75,7 +94,7 @@ namespace coc {
 		}
 
 		static void limitLogFiles( std::string _path, int _i = 30) {
-			
+
 			std::vector<std::string> files;
 
 			#ifdef COC_CI
@@ -83,9 +102,9 @@ namespace coc {
 			#endif
 
 			#ifdef COC_OF
-				//todo: files = OF equivalent 
+				//todo: files = OF equivalent
 			#endif
-		
+
 			while (files.size() > _i) {
 				std::string path = _path + "/" + files[0];
 				std::remove(path.c_str());

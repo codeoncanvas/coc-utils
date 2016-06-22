@@ -1,8 +1,21 @@
-//
-//  cocTween.h
-//  Created by Lukasz Karluk on 21/03/2016.
-//  http://codeoncanvas.cc
-//
+/**
+ *
+ *      ┌─┐╔═╗┌┬┐┌─┐
+ *      │  ║ ║ ││├┤
+ *      └─┘╚═╝─┴┘└─┘
+ *   ┌─┐┌─┐╔╗╔┬  ┬┌─┐┌─┐
+ *   │  ├─┤║║║└┐┌┘├─┤└─┐
+ *   └─┘┴ ┴╝╚╝ └┘ ┴ ┴└─┘
+ *
+ * Copyright (c) 2016 Code on Canvas Pty Ltd, http://CodeOnCanvas.cc
+ *
+ * This software is distributed under the MIT license
+ * https://tldrlegal.com/license/mit-license
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code
+ *
+ **/
 
 #pragma once
 
@@ -201,7 +214,7 @@ public:
     float easeOut(float t,float b , float c, float d) const override {
         return -c *(t/=d)*(t-2) + b;
     }
-    
+
     float easeInOut(float t,float b , float c, float d) const override {
         if ((t/=d/2) < 1) return c/2*t*t + b;
         return -c/2 * ((--t)*(t-2) - 1) + b;
@@ -256,7 +269,7 @@ public:
 class Tween {
 
 public:
-    
+
     //-------------------------------------------------------------------
     float tween(float value, float inputMin, float inputMax, float outputMin, float outputMax, EaseFunction easingFunc, bool bClamp = false) {
 
@@ -264,95 +277,95 @@ public:
         float b = outputMin;
         float c = outputMax - outputMin;
         float d = 1.0;
-        
+
         const Easing & easing = getEasing(easingFunc);
         unsigned int easeType = (int)easingFunc % 3;
-        
+
         if(easeType == 0) {
-            
+
             return easing.easeIn(t, b, c, d);
-            
+
         } else if(easeType == 1) {
-            
+
             return easing.easeOut(t, b, c, d);
-            
+
         } else if(easeType == 2) {
-        
+
             return easing.easeInOut(t, b, c, d);
         }
-        
+
         return 0;
     }
-    
+
     //-----------------------------------------------------------------------
     const Easing & getEasing(EaseFunction easeFunc) {
 
         if((easeFunc == EASE_BACK_IN)  ||
            (easeFunc == EASE_BACK_OUT) ||
            (easeFunc == EASE_BACK_INOUT)) {
-        
+
             return easingBack;
-            
+
         } else if((easeFunc == EASE_BOUNCE_IN)  ||
                   (easeFunc == EASE_BOUNCE_OUT) ||
                   (easeFunc == EASE_BOUNCE_INOUT)) {
-        
+
             return easingBounce;
-            
+
         } else if((easeFunc == EASE_CIRC_IN)  ||
                   (easeFunc == EASE_CIRC_OUT) ||
                   (easeFunc == EASE_CIRC_INOUT)) {
-        
+
             return easingCirc;
-            
+
         } else if((easeFunc == EASE_CUBIC_IN)  ||
                   (easeFunc == EASE_CUBIC_OUT) ||
                   (easeFunc == EASE_CUBIC_INOUT)) {
-         
+
             return easingCubic;
-            
+
         } else if((easeFunc == EASE_ELASTIC_IN)  ||
                   (easeFunc == EASE_ELASTIC_OUT) ||
                   (easeFunc == EASE_ELASTIC_INOUT)) {
 
             return easingElastic;
-            
+
         } else if((easeFunc == EASE_EXPO_IN)  ||
                   (easeFunc == EASE_EXPO_OUT) ||
                   (easeFunc == EASE_EXPO_INOUT)) {
 
             return easingExpo;
-            
+
         } else if((easeFunc == EASE_QUAD_IN)  ||
                   (easeFunc == EASE_QUAD_OUT) ||
                   (easeFunc == EASE_QUAD_INOUT)) {
-        
+
             return easingQuad;
-            
+
         } else if((easeFunc == EASE_QUART_IN)  ||
                   (easeFunc == EASE_QUART_OUT) ||
                   (easeFunc == EASE_QUART_INOUT)) {
 
             return easingQuart;
-            
+
         } else if((easeFunc == EASE_QUINT_IN)  ||
                   (easeFunc == EASE_QUINT_OUT) ||
                   (easeFunc == EASE_QUINT_INOUT)) {
 
             return easingQuint;
-            
+
         } else if((easeFunc == EASE_SINE_IN)  ||
                   (easeFunc == EASE_SINE_OUT) ||
                   (easeFunc == EASE_SINE_INOUT)) {
 
             return easingSine;
         }
-        
+
         return easingLinear; // default.
     }
-    
+
 protected:
-    
+
     EasingBack easingBack;
     EasingBounce easingBounce;
     EasingCirc easingCirc;
