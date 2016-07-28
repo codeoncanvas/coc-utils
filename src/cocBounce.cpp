@@ -1,10 +1,26 @@
-/*
- *  Ported from ofxBounce.h
- *  https://github.com/julapy/ofxJulapyUtils/blob/master/src/ofxBounce.h
+/**
  *
- *  Created by lukasz karluk on 5/01/10.
- *  http://codeoncanvas.cc
- */
+ *      ┌─┐╔═╗┌┬┐┌─┐
+ *      │  ║ ║ ││├┤
+ *      └─┘╚═╝─┴┘└─┘
+ *   ┌─┐┌─┐╔╗╔┬  ┬┌─┐┌─┐
+ *   │  ├─┤║║║└┐┌┘├─┤└─┐
+ *   └─┘┴ ┴╝╚╝ └┘ ┴ ┴└─┘
+ *
+ * Copyright (c) 2010-2016 Code on Canvas Pty Ltd, http://CodeOnCanvas.cc
+ *
+ * This software is distributed under the MIT license
+ * https://tldrlegal.com/license/mit-license
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code
+ *
+ **/
+
+//
+//  Ported from ofxBounce.h
+//  https://github.com/julapy/ofxJulapyUtils/blob/master/src/ofxBounce.h
+//
 
 #include "cocBounce.h"
 
@@ -18,7 +34,7 @@ Bounce::Bounce() {
     d = 0;      // difference = center - position.
     v = 0;      // velocity.
 };
-    
+
 void Bounce::update() {
     d = c - p;
     v = v * i + d * k;
@@ -66,4 +82,3 @@ float Bounce::velocity() const {
 };
 
 }
-

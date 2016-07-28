@@ -1,9 +1,25 @@
+/**
+ *
+ *      ┌─┐╔═╗┌┬┐┌─┐
+ *      │  ║ ║ ││├┤
+ *      └─┘╚═╝─┴┘└─┘
+ *   ┌─┐┌─┐╔╗╔┬  ┬┌─┐┌─┐
+ *   │  ├─┤║║║└┐┌┘├─┤└─┐
+ *   └─┘┴ ┴╝╚╝ └┘ ┴ ┴└─┘
+ *
+ * Copyright (c) 2015-2016 Code on Canvas Pty Ltd, http://CodeOnCanvas.cc
+ *
+ * This software is distributed under the MIT license
+ * https://tldrlegal.com/license/mit-license
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code
+ *
+ **/
+
 //
 //  Ported from ofxBounce2D.h
 //  https://github.com/julapy/ofxJulapyUtils/blob/master/src/ofxBounce2D.h
-//
-//  Created by Lukasz Karluk on 19/08/2015.
-//  http://codeoncanvas.cc
 //
 
 #include "cocBounce2D.h"
