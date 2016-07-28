@@ -32,5 +32,11 @@ std::vector<glm::vec2> PolyArc(glm::vec2 centre,
                                int resolution=100,
                                float angleStart=0,
                                float angleEnd=M_PI*2);
+    
+std::vector<glm::vec2> PolyResample(const std::vector<glm::vec2> & poly,
+                                    float sampleDist,
+                                    bool bApproximateBestFit=false);
+    
+float PolyLength(const std::vector<glm::vec2> & poly);
 
 };

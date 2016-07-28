@@ -181,4 +181,72 @@ std::vector<glm::vec2> PolyArc(glm::vec2 centre, float radius, int resolution, f
     return polyOut;
 }
 
+//--------------------------------------------------------------
+std::vector<glm::vec2> PolyResample(const std::vector<glm::vec2> & poly,
+                                    float sampleDist,
+                                    bool bApproximateBestFit) {
+
+    std::vector<glm::vec2> polyOut;
+    
+    if(poly.size() < 2) {
+        return polyOut;
+    }
+    
+    if(bApproximateBestFit) {
+        float length = PolyLength(poly);
+        int numOfSamplesRoundedDown = length / sampleDist;
+        sampleDist = length / (float)numOfSamplesRoundedDown;
+    }
+
+    float segmentOffset = 0.0;
+    for(int i=0; i<poly.size()-1; i++) {
+        
+        const glm::vec2 & p0 = poly[i];
+        const glm::vec2 & p1 = poly[i+1];
+        
+        float segmentLength = glm::length(p1 - p0);
+        float segmentDist = segmentOffset;
+        float segmentRemainder = segmentLength - segmentDist;
+        
+        if((segmentRemainder - sampleDist) < 0) {
+            segmentOffset += segmentRemainder;
+            continue;
+        }
+
+        int numOfSamples = (segmentRemainder / sampleDist) + 1;
+        for(int j=0; j<numOfSamples; j++) {
+
+            float p = segmentDist / segmentLength;
+            glm::vec2 point = (p1 - p0) * p + p0;
+            polyOut.push_back(point);
+            
+            if(j < numOfSamples-1) {
+                segmentDist += sampleDist;
+            }
+        }
+        
+        segmentRemainder = segmentLength - segmentDist;
+        segmentOffset = sampleDist - segmentRemainder;
+    }
+    
+    return polyOut;
+}
+
+//--------------------------------------------------------------
+float PolyLength(const std::vector<glm::vec2> & poly) {
+    float length = 0;
+    if(poly.size() < 2) {
+        return length;
+    }
+    
+    for(int i=0; i<poly.size()-1; i++) {
+        const glm::vec2 & p0 = poly[i];
+        const glm::vec2 & p1 = poly[i+1];
+        length += glm::length(p1 - p0);
+
+    }
+    
+    return length;
+}
+
 };
