@@ -40,7 +40,7 @@ public:
 	int getNumLines() { return numLines; }
 	float getLineHeight() { return lineHeight; }
 	int getTotalHeight() { return totalHeight; }
-	ci::gl::TextureRef getTextureRef() { return texPreLeading; }
+	ci::gl::TextureRef getTextureRef() const { return texPreLeading; }
 
 	ci::Surface    renderWithLeadingOffset( ci::vec2 offset, float leadingOffset );
 
