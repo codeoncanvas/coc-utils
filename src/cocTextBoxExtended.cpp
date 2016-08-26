@@ -64,6 +64,67 @@ void TextBoxExtended::generateLines() {
 
 }
 
+void TextBoxExtended::applyLeading( float _leadingOffset )
+{
+	leadingOffset = _leadingOffset;
+
+	if (!numLines) generateLines();
+
+	linesBounds.clear();
+
+	if (numLines > 1) {
+		lineHeight = (float) texPreLeading->getHeight() / numLines;
+		for (int i=0; i<numLines; i++) {
+			float offset = i*_leadingOffset;
+			Rectf dst = Rectf(
+					0,
+					i*lineHeight+offset,
+					+texPreLeading->getWidth(),
+					+i*lineHeight+lineHeight+offset
+			);
+			linesBounds.push_back(dst);
+
+		}
+
+		totalHeight = numLines*lineHeight + numLines*_leadingOffset;
+	}
+	else {
+		totalHeight = texPreLeading->getHeight();
+	}
+}
+
+void TextBoxExtended::drawWithLeading( ci::vec2 _pos )
+{
+	if (!numLines) {
+		CI_LOG_E("Must call applyLeading()!");
+		return;
+	}
+
+	if (numLines > 1) {
+		lineHeight = (float) texPreLeading->getHeight() / numLines;
+		for (int i=0; i<numLines; i++) {
+			Area src = Area(
+					0,
+					i*lineHeight,
+					texPreLeading->getWidth(),
+					i*lineHeight+lineHeight
+			);
+			float offset = i*leadingOffset;
+			Rectf dst = linesBounds[i];
+			dst.x1 += _pos.x;
+			dst.y1 += _pos.y;
+			dst.x2 += _pos.x;
+			dst.y2 += _pos.y;
+			gl::draw( texPreLeading, src, dst);
+		}
+
+	}
+	else {
+		gl::draw( texPreLeading, _pos);
+	}
+
+}
+
 void TextBoxExtended::drawWithLeading( ci::vec2 _pos, float _leadingOffset ) {
 
 	if (!numLines) generateLines();

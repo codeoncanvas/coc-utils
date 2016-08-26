@@ -33,9 +33,17 @@ public:
 	~TextBoxExtended() { reset(); }
 	void reset() {  texPreLeading.reset(); }
 
+	//! Pre-calculates leading
+	void applyLeading( float _leadingOffset );
+
 	void generateTexture();
 	void generateLines();
+
+	//! Calculates leading in draw if you want to adjust in realtime
 	void drawWithLeading( ci::vec2 _pos, float _leadingOffset );
+
+	//! Draws based on pre-calculated leading
+	void drawWithLeading( ci::vec2 _pos );
 
 	int getNumLines() { return numLines; }
 	float getLineHeight() { return lineHeight; }
@@ -45,6 +53,9 @@ public:
 	ci::Surface    renderWithLeadingOffset( ci::vec2 offset, float leadingOffset );
 
 private:
+
+	std::vector<ci::Rectf>	linesBounds;
+	float 					leadingOffset;
 
 	int 					totalHeight;
 	int                     numLines 		= 0;
