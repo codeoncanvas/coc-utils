@@ -55,7 +55,7 @@ public:
 private:
 
 	std::vector<ci::Rectf>	linesBounds;
-	float 					leadingOffset;
+	float 					leadingOffset = 0;
 
 	int 					totalHeight;
 	int                     numLines 		= 0;

@@ -67,10 +67,12 @@ void TextBoxExtended::generateLines() {
 void TextBoxExtended::applyLeading( float _leadingOffset )
 {
 	leadingOffset = _leadingOffset;
+	linesBounds.clear();
+
+	if (leadingOffset == 0) return;
 
 	if (!numLines) generateLines();
 
-	linesBounds.clear();
 
 	if (numLines > 1) {
 		lineHeight = (float) texPreLeading->getHeight() / numLines;
@@ -100,7 +102,10 @@ void TextBoxExtended::drawWithLeading( ci::vec2 _pos )
 		return;
 	}
 
-	if (numLines > 1) {
+	if ( leadingOffset == 0 || numLines < 2 ) {
+		gl::draw( texPreLeading, _pos);
+	}
+	else {
 		lineHeight = (float) texPreLeading->getHeight() / numLines;
 		for (int i=0; i<numLines; i++) {
 			Area src = Area(
@@ -109,7 +114,6 @@ void TextBoxExtended::drawWithLeading( ci::vec2 _pos )
 					texPreLeading->getWidth(),
 					i*lineHeight+lineHeight
 			);
-			float offset = i*leadingOffset;
 			Rectf dst = linesBounds[i];
 			dst.x1 += _pos.x;
 			dst.y1 += _pos.y;
@@ -117,10 +121,6 @@ void TextBoxExtended::drawWithLeading( ci::vec2 _pos )
 			dst.y2 += _pos.y;
 			gl::draw( texPreLeading, src, dst);
 		}
-
-	}
-	else {
-		gl::draw( texPreLeading, _pos);
 	}
 
 }
