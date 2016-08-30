@@ -23,6 +23,7 @@
 #include "cinder/Utilities.h"
 #include "cinder/Noncopyable.h"
 #include "cinder/Log.h"
+#include "cinder/CinderMath.h"
 
 #if defined( CINDER_COCOA )
 #include "cinder/cocoa/CinderCocoa.h"
@@ -64,10 +65,11 @@ void TextBoxExtended::generateLines() {
 
 }
 
-void TextBoxExtended::applyLeading( float _leadingOffset )
+void TextBoxExtended::applyLeading( float _leadingOffset, bool _roundToInt )
 {
 	leadingOffset = _leadingOffset;
-	linesBounds.clear();
+	roundToInt = _roundToInt;
+	linesDst.clear();
 
 	if (leadingOffset == 0) return;
 
@@ -75,16 +77,46 @@ void TextBoxExtended::applyLeading( float _leadingOffset )
 
 
 	if (numLines > 1) {
+
 		lineHeight = (float) texPreLeading->getHeight() / numLines;
+
 		for (int i=0; i<numLines; i++) {
-			float offset = i*_leadingOffset;
-			Rectf dst = Rectf(
-					0,
-					i*lineHeight+offset,
-					+texPreLeading->getWidth(),
-					+i*lineHeight+lineHeight+offset
-			);
-			linesBounds.push_back(dst);
+
+			if (roundToInt) {
+				Area src = Area(
+						0,
+						(int) (i*lineHeight),
+						texPreLeading->getWidth(),
+						(int) (i*lineHeight+lineHeight)
+				);
+				linesSrc.push_back(src);
+				float offset = i*_leadingOffset;
+				Rectf dst = Rectf(
+						0,
+						(int) (i*lineHeight+offset),
+						texPreLeading->getWidth(),
+						(int) (i*lineHeight+lineHeight+offset)
+				);
+				linesDst.push_back(dst);
+			}
+			else {
+				Area src = Area(
+						0,
+						i*lineHeight,
+						texPreLeading->getWidth(),
+						i*lineHeight+lineHeight
+				);
+				linesSrc.push_back(src);
+				float offset = i*_leadingOffset;
+				Rectf dst = Rectf(
+						0,
+						i*lineHeight+offset,
+						texPreLeading->getWidth(),
+						i*lineHeight+lineHeight+offset
+				);
+				linesDst.push_back(dst);
+			}
+
 
 		}
 
@@ -97,6 +129,7 @@ void TextBoxExtended::applyLeading( float _leadingOffset )
 
 void TextBoxExtended::drawWithLeading( ci::vec2 _pos )
 {
+	if (roundToInt) _pos = (ivec2) _pos;
 	if (!numLines) {
 		CI_LOG_E("Must call applyLeading()!");
 		return;
@@ -106,46 +139,67 @@ void TextBoxExtended::drawWithLeading( ci::vec2 _pos )
 		gl::draw( texPreLeading, _pos);
 	}
 	else {
+
 		lineHeight = (float) texPreLeading->getHeight() / numLines;
+
 		for (int i=0; i<numLines; i++) {
-			Area src = Area(
-					0,
-					i*lineHeight,
-					texPreLeading->getWidth(),
-					i*lineHeight+lineHeight
-			);
-			Rectf dst = linesBounds[i];
+			Rectf dst = linesDst[i];
 			dst.x1 += _pos.x;
 			dst.y1 += _pos.y;
 			dst.x2 += _pos.x;
 			dst.y2 += _pos.y;
-			gl::draw( texPreLeading, src, dst);
+			gl::draw( texPreLeading, linesSrc[i], dst);
 		}
 	}
 
 }
 
-void TextBoxExtended::drawWithLeading( ci::vec2 _pos, float _leadingOffset ) {
+void TextBoxExtended::drawWithLeading( ci::vec2 _pos, float _leadingOffset, bool _roundToInt ) {
 
+	if (_roundToInt) _pos = (ivec2) _pos;
 	if (!numLines) generateLines();
+	linesDst.clear();
 
 	if (numLines > 1) {
+
 		lineHeight = (float) texPreLeading->getHeight() / numLines;
+
 		for (int i=0; i<numLines; i++) {
-			Area src = Area(
-					0,
-					i*lineHeight,
-					texPreLeading->getWidth(),
-					i*lineHeight+lineHeight
-			);
-			float offset = i*_leadingOffset;
-			Rectf dst = Rectf(
-					_pos.x,
-					_pos.y+i*lineHeight+offset,
-					_pos.x+texPreLeading->getWidth(),
-					_pos.y+i*lineHeight+lineHeight+offset
-			);
+			Area src;
+			Rectf dst;
+			if (_roundToInt) {
+				src = Area(
+						0,
+						(int) (i*lineHeight),
+						texPreLeading->getWidth(),
+						(int) (i*lineHeight+lineHeight)
+				);
+				float offset = i*_leadingOffset;
+				dst = Rectf(
+						_pos.x,
+						(int) (_pos.y+i*lineHeight+offset),
+						_pos.x+texPreLeading->getWidth(),
+						(int) (_pos.y+i*lineHeight+lineHeight+offset)
+				);
+			}
+			else {
+				src = Area(
+						0,
+						i*lineHeight,
+						texPreLeading->getWidth(),
+						i*lineHeight+lineHeight
+				);
+				float offset = i*_leadingOffset;
+				dst = Rectf(
+						_pos.x,
+						_pos.y+i*lineHeight+offset,
+						_pos.x+texPreLeading->getWidth(),
+						_pos.y+i*lineHeight+lineHeight+offset
+				);
+			}
+
 			gl::draw( texPreLeading, src, dst);
+			linesDst.push_back( dst );
 		}
 
 		totalHeight = numLines*lineHeight + numLines*_leadingOffset;
@@ -154,6 +208,15 @@ void TextBoxExtended::drawWithLeading( ci::vec2 _pos, float _leadingOffset ) {
 		gl::draw( texPreLeading, _pos);
 		totalHeight = texPreLeading->getHeight();
 	}
+
+}
+
+void TextBoxExtended::drawBounds( ci::vec2 _pos )
+{
+	gl::ScopedModelMatrix mat;
+	gl::translate(_pos);
+
+	for (Rectf &r : linesDst ) gl::drawStrokedRect( r );
 
 }
 

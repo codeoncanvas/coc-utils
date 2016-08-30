@@ -34,16 +34,19 @@ public:
 	void reset() {  texPreLeading.reset(); }
 
 	//! Pre-calculates leading
-	void applyLeading( float _leadingOffset );
+	void applyLeading( float _leadingOffset, bool _roundToInt = false );
 
 	void generateTexture();
 	void generateLines();
 
 	//! Calculates leading in draw if you want to adjust in realtime
-	void drawWithLeading( ci::vec2 _pos, float _leadingOffset );
+	void drawWithLeading( ci::vec2 _pos, float _leadingOffset, bool _roundToInt = false );
 
 	//! Draws based on pre-calculated leading
 	void drawWithLeading( ci::vec2 _pos );
+
+	//! Draws line bounds for debugging
+	void drawBounds( ci::vec2 _pos =  ci::vec2(0,0) );
 
 	int getNumLines() { return numLines; }
 	float getLineHeight() { return lineHeight; }
@@ -54,8 +57,10 @@ public:
 
 private:
 
-	std::vector<ci::Rectf>	linesBounds;
+	std::vector<ci::Area>	linesSrc;
+	std::vector<ci::Rectf>	linesDst;
 	float 					leadingOffset = 0;
+	bool 					roundToInt = false;
 
 	int 					totalHeight;
 	int                     numLines 		= 0;
