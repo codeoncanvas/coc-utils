@@ -1,0 +1,130 @@
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+    <Filter Include="Blocks">
+      <UniqueIdentifier>{CDE9AD73-69EB-4A6A-93A9-C00E920CDB4A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blocks\CoC-Core">
+      <UniqueIdentifier>{0A0A144B-00F0-405F-A3F0-A0B2743DB580}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blocks\CoC-Core\src">
+      <UniqueIdentifier>{94A05FAE-6CB7-488E-9C50-663503B9747D}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blocks\CoC-Utils">
+      <UniqueIdentifier>{5D71A34A-D432-4E8E-8F52-B463E80601A0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blocks\CoC-Utils\src">
+      <UniqueIdentifier>{465E99A3-0D55-467B-A204-04E41C2340B0}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\TextBoxExtendedSampleApp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\TextBoxExtendedSampleApp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClInclude Include="..\include\Resources.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\_cinder\Cinder.git\blocks\coc-core\src\cocConstants.h">
+      <Filter>Blocks\CoC-Core\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\_cinder\Cinder.git\blocks\coc-core\src\cocCore.h">
+      <Filter>Blocks\CoC-Core\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\_cinder\Cinder.git\blocks\coc-core\src\cocMath.h">
+      <Filter>Blocks\CoC-Core\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\_cinder\Cinder.git\blocks\coc-core\src\cocRandom.h">
+      <Filter>Blocks\CoC-Core\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\_cinder\Cinder.git\blocks\coc-core\src\cocRect.h">
+      <Filter>Blocks\CoC-Core\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\_cinder\Cinder.git\blocks\coc-core\src\cocValue.h">
+      <Filter>Blocks\CoC-Core\src</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\..\..\..\_cinder\Cinder.git\blocks\coc-core\src\cocCore.cpp">
+      <Filter>Blocks\CoC-Core\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\_cinder\Cinder.git\blocks\coc-core\src\cocMath.cpp">
+      <Filter>Blocks\CoC-Core\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\_cinder\Cinder.git\blocks\coc-core\src\cocRandom.cpp">
+      <Filter>Blocks\CoC-Core\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\_cinder\Cinder.git\blocks\coc-core\src\cocRect.cpp">
+      <Filter>Blocks\CoC-Core\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\_cinder\Cinder.git\blocks\coc-core\src\cocValue.cpp">
+      <Filter>Blocks\CoC-Core\src</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\..\..\..\_cinder\Cinder.git\blocks\coc-utils\src\cocBounce.h">
+      <Filter>Blocks\CoC-Utils\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\_cinder\Cinder.git\blocks\coc-utils\src\cocBounce2D.h">
+      <Filter>Blocks\CoC-Utils\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\_cinder\Cinder.git\blocks\coc-utils\src\cocFlag.h">
+      <Filter>Blocks\CoC-Utils\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\_cinder\Cinder.git\blocks\coc-utils\src\cocLog.h">
+      <Filter>Blocks\CoC-Utils\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\_cinder\Cinder.git\blocks\coc-utils\src\cocPoly.h">
+      <Filter>Blocks\CoC-Utils\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\_cinder\Cinder.git\blocks\coc-utils\src\cocSwipe.h">
+      <Filter>Blocks\CoC-Utils\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\_cinder\Cinder.git\blocks\coc-utils\src\cocTimer.h">
+      <Filter>Blocks\CoC-Utils\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\_cinder\Cinder.git\blocks\coc-utils\src\cocTween.h">
+      <Filter>Blocks\CoC-Utils\src</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\..\..\..\_cinder\Cinder.git\blocks\coc-utils\src\cocBounce.cpp">
+      <Filter>Blocks\CoC-Utils\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\_cinder\Cinder.git\blocks\coc-utils\src\cocBounce2D.cpp">
+      <Filter>Blocks\CoC-Utils\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\_cinder\Cinder.git\blocks\coc-utils\src\cocFlag.cpp">
+      <Filter>Blocks\CoC-Utils\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\_cinder\Cinder.git\blocks\coc-utils\src\cocPoly.cpp">
+      <Filter>Blocks\CoC-Utils\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\_cinder\Cinder.git\blocks\coc-utils\src\cocSwipe.cpp">
+      <Filter>Blocks\CoC-Utils\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\_cinder\Cinder.git\blocks\coc-utils\src\cocTimer.cpp">
+      <Filter>Blocks\CoC-Utils\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\..\_cinder\Cinder.git\blocks\coc-utils\src\cocTween.cpp">
+      <Filter>Blocks\CoC-Utils\src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\include\Resources.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Resources.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>

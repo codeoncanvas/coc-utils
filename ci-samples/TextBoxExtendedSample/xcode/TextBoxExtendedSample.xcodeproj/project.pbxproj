@@ -1,0 +1,457 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		006D720419952D00008149E2 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 006D720219952D00008149E2 /* AVFoundation.framework */; };
+		006D720519952D00008149E2 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 006D720319952D00008149E2 /* CoreMedia.framework */; };
+		0091D8F90E81B9330029341E /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0091D8F80E81B9330029341E /* OpenGL.framework */; };
+		00B784B30FF439BC000DE1D7 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B784AF0FF439BC000DE1D7 /* Accelerate.framework */; };
+		00B784B40FF439BC000DE1D7 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B784B00FF439BC000DE1D7 /* AudioToolbox.framework */; };
+		00B784B50FF439BC000DE1D7 /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B784B10FF439BC000DE1D7 /* AudioUnit.framework */; };
+		00B784B60FF439BC000DE1D7 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B784B20FF439BC000DE1D7 /* CoreAudio.framework */; };
+		00B9955A1B128DF400A5C623 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B995581B128DF400A5C623 /* IOKit.framework */; };
+		00B9955B1B128DF400A5C623 /* IOSurface.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00B995591B128DF400A5C623 /* IOSurface.framework */; };
+		140717FCB8570AC688C77DF8 /* cocTextBoxExtended.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 140715893E2996659E268F68 /* cocTextBoxExtended.cpp */; };
+		179AFC8B3E84418C9DD31AC2 /* CinderApp.icns in Resources */ = {isa = PBXBuildFile; fileRef = 200E19215AAA43EDB931086C /* CinderApp.icns */; };
+		17B890D23D614479BB54CED8 /* cocValue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3E668A2F290D44609E66759A /* cocValue.cpp */; };
+		26DDD5AC649E4BEC95E45C1A /* cocTimer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 48D23DA2556848C789D6B706 /* cocTimer.cpp */; };
+		5323E6B20EAFCA74003A9687 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5323E6B10EAFCA74003A9687 /* CoreVideo.framework */; };
+		679DF72D53E84E4EA376AE99 /* cocRandom.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A40B66AAED44F1B8F4B1927 /* cocRandom.cpp */; };
+		7A20E32C4DB242BFAF090F8D /* cocFlag.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 264EA900EF994D3980677FAD /* cocFlag.cpp */; };
+		89F32992935049AEA47D6E5D /* cocSwipe.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 21A2E30D6DC547C59ED86284 /* cocSwipe.cpp */; };
+		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		A1BE1DCF05774DC99D5DC754 /* cocBounce.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9195F789BC9D40BC9219F8C9 /* cocBounce.cpp */; };
+		C1C8794DD6EA4F6CB3230A62 /* cocCore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AAEA50C357EB442DA01DE71C /* cocCore.cpp */; };
+		CF9B18729C8D40C38B89E00E /* cocRect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 417EB6BC32874D1A9FFF58E5 /* cocRect.cpp */; };
+		D2024AE42C574D28923906C1 /* cocPoly.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F1ADB22269334BE4B01C98A0 /* cocPoly.cpp */; };
+		D807DC214D1E4E4BB7A551BD /* cocTween.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CD0432695DC5447695942636 /* cocTween.cpp */; };
+		DCF00CCE3B804B78A430E0EA /* TextBoxExtendedSampleApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 03BD5B2153A1479289937602 /* TextBoxExtendedSampleApp.cpp */; };
+		E5141660757D4782993B89D3 /* cocBounce2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4616E00AA5FE49E19481C1A7 /* cocBounce2D.cpp */; };
+		E6ACCAE3647947C68B25B0B4 /* cocMath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A48F2CCCF2A04052888034F8 /* cocMath.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		006D720219952D00008149E2 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		006D720319952D00008149E2 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		0091D8F80E81B9330029341E /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = /System/Library/Frameworks/OpenGL.framework; sourceTree = "<absolute>"; };
+		00B784AF0FF439BC000DE1D7 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		00B784B00FF439BC000DE1D7 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		00B784B10FF439BC000DE1D7 /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
+		00B784B20FF439BC000DE1D7 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		00B995581B128DF400A5C623 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
+		00B995591B128DF400A5C623 /* IOSurface.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOSurface.framework; path = System/Library/Frameworks/IOSurface.framework; sourceTree = SDKROOT; };
+		03BD5B2153A1479289937602 /* TextBoxExtendedSampleApp.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.cpp; name = TextBoxExtendedSampleApp.cpp; path = ../src/TextBoxExtendedSampleApp.cpp; sourceTree = "<group>"; };
+		08FFB0676F2B434993DD425D /* cocSwipe.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = cocSwipe.h; path = "../../../../../_cinder/Cinder.git/blocks/coc-utils/src/cocSwipe.h"; sourceTree = "<group>"; };
+		0F4E04A28FD74F19B33E7BD7 /* cocFlag.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = cocFlag.h; path = "../../../../../_cinder/Cinder.git/blocks/coc-utils/src/cocFlag.h"; sourceTree = "<group>"; };
+		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
+		140715893E2996659E268F68 /* cocTextBoxExtended.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = cocTextBoxExtended.cpp; path = ../../../src/cocTextBoxExtended.cpp; sourceTree = "<group>"; };
+		14071B42184A0272F9B9BB88 /* cocTextBoxExtended.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cocTextBoxExtended.h; path = ../../../src/cocTextBoxExtended.h; sourceTree = "<group>"; };
+		200E19215AAA43EDB931086C /* CinderApp.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = CinderApp.icns; path = ../resources/CinderApp.icns; sourceTree = "<group>"; };
+		21A2E30D6DC547C59ED86284 /* cocSwipe.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.cpp; name = cocSwipe.cpp; path = "../../../../../_cinder/Cinder.git/blocks/coc-utils/src/cocSwipe.cpp"; sourceTree = "<group>"; };
+		264EA900EF994D3980677FAD /* cocFlag.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.cpp; name = cocFlag.cpp; path = "../../../../../_cinder/Cinder.git/blocks/coc-utils/src/cocFlag.cpp"; sourceTree = "<group>"; };
+		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
+		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		3E668A2F290D44609E66759A /* cocValue.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.cpp; name = cocValue.cpp; path = "../../../../../_cinder/Cinder.git/blocks/coc-core/src/cocValue.cpp"; sourceTree = "<group>"; };
+		417EB6BC32874D1A9FFF58E5 /* cocRect.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.cpp; name = cocRect.cpp; path = "../../../../../_cinder/Cinder.git/blocks/coc-core/src/cocRect.cpp"; sourceTree = "<group>"; };
+		4616E00AA5FE49E19481C1A7 /* cocBounce2D.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.cpp; name = cocBounce2D.cpp; path = "../../../../../_cinder/Cinder.git/blocks/coc-utils/src/cocBounce2D.cpp"; sourceTree = "<group>"; };
+		4656BC76B6F045D4926415BA /* cocTimer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = cocTimer.h; path = "../../../../../_cinder/Cinder.git/blocks/coc-utils/src/cocTimer.h"; sourceTree = "<group>"; };
+		48D23DA2556848C789D6B706 /* cocTimer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.cpp; name = cocTimer.cpp; path = "../../../../../_cinder/Cinder.git/blocks/coc-utils/src/cocTimer.cpp"; sourceTree = "<group>"; };
+		5323E6B10EAFCA74003A9687 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = /System/Library/Frameworks/CoreVideo.framework; sourceTree = "<absolute>"; };
+		614E4DF1B782427A9F4ECB5C /* TextBoxExtendedSample_Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = "\"\""; path = TextBoxExtendedSample_Prefix.pch; sourceTree = "<group>"; };
+		679BD6286886415A8219863C /* cocRect.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = cocRect.h; path = "../../../../../_cinder/Cinder.git/blocks/coc-core/src/cocRect.h"; sourceTree = "<group>"; };
+		68DBC9D7B682460981C154C5 /* cocBounce2D.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = cocBounce2D.h; path = "../../../../../_cinder/Cinder.git/blocks/coc-utils/src/cocBounce2D.h"; sourceTree = "<group>"; };
+		6B62A3E9B3384389BA6246BF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6B7933B3FFE44CF1A9123C5D /* cocTween.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = cocTween.h; path = "../../../../../_cinder/Cinder.git/blocks/coc-utils/src/cocTween.h"; sourceTree = "<group>"; };
+		7821DC48B9944438BBC62DFE /* cocMath.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = cocMath.h; path = "../../../../../_cinder/Cinder.git/blocks/coc-core/src/cocMath.h"; sourceTree = "<group>"; };
+		83B3DAD9AC344CA7BDCFAABB /* cocRandom.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = cocRandom.h; path = "../../../../../_cinder/Cinder.git/blocks/coc-core/src/cocRandom.h"; sourceTree = "<group>"; };
+		8D1107320486CEB800E47090 /* TextBoxExtendedSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TextBoxExtendedSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9195F789BC9D40BC9219F8C9 /* cocBounce.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.cpp; name = cocBounce.cpp; path = "../../../../../_cinder/Cinder.git/blocks/coc-utils/src/cocBounce.cpp"; sourceTree = "<group>"; };
+		9A40B66AAED44F1B8F4B1927 /* cocRandom.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.cpp; name = cocRandom.cpp; path = "../../../../../_cinder/Cinder.git/blocks/coc-core/src/cocRandom.cpp"; sourceTree = "<group>"; };
+		A48F2CCCF2A04052888034F8 /* cocMath.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.cpp; name = cocMath.cpp; path = "../../../../../_cinder/Cinder.git/blocks/coc-core/src/cocMath.cpp"; sourceTree = "<group>"; };
+		A89659C3726644C7BEC4639B /* cocPoly.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = cocPoly.h; path = "../../../../../_cinder/Cinder.git/blocks/coc-utils/src/cocPoly.h"; sourceTree = "<group>"; };
+		AAEA50C357EB442DA01DE71C /* cocCore.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.cpp; name = cocCore.cpp; path = "../../../../../_cinder/Cinder.git/blocks/coc-core/src/cocCore.cpp"; sourceTree = "<group>"; };
+		B4312E714FD247CA9D1F2628 /* cocLog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = cocLog.h; path = "../../../../../_cinder/Cinder.git/blocks/coc-utils/src/cocLog.h"; sourceTree = "<group>"; };
+		C8C693B1F05B498C82E51BAB /* cocValue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = cocValue.h; path = "../../../../../_cinder/Cinder.git/blocks/coc-core/src/cocValue.h"; sourceTree = "<group>"; };
+		CD0432695DC5447695942636 /* cocTween.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.cpp; name = cocTween.cpp; path = "../../../../../_cinder/Cinder.git/blocks/coc-utils/src/cocTween.cpp"; sourceTree = "<group>"; };
+		DFFC8E55F03548C1B7ACECE9 /* cocCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = cocCore.h; path = "../../../../../_cinder/Cinder.git/blocks/coc-core/src/cocCore.h"; sourceTree = "<group>"; };
+		EAAA790E707649DF8B049001 /* Resources.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Resources.h; path = ../include/Resources.h; sourceTree = "<group>"; };
+		F1ADB22269334BE4B01C98A0 /* cocPoly.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.cpp; name = cocPoly.cpp; path = "../../../../../_cinder/Cinder.git/blocks/coc-utils/src/cocPoly.cpp"; sourceTree = "<group>"; };
+		F3337FBBA31545CEA5170DB0 /* cocBounce.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = cocBounce.h; path = "../../../../../_cinder/Cinder.git/blocks/coc-utils/src/cocBounce.h"; sourceTree = "<group>"; };
+		FBAB7C7DB9B8419699EA7BF2 /* cocConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = cocConstants.h; path = "../../../../../_cinder/Cinder.git/blocks/coc-core/src/cocConstants.h"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8D11072E0486CEB800E47090 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				006D720419952D00008149E2 /* AVFoundation.framework in Frameworks */,
+				006D720519952D00008149E2 /* CoreMedia.framework in Frameworks */,
+				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
+				0091D8F90E81B9330029341E /* OpenGL.framework in Frameworks */,
+				5323E6B20EAFCA74003A9687 /* CoreVideo.framework in Frameworks */,
+				00B784B30FF439BC000DE1D7 /* Accelerate.framework in Frameworks */,
+				00B784B40FF439BC000DE1D7 /* AudioToolbox.framework in Frameworks */,
+				00B784B50FF439BC000DE1D7 /* AudioUnit.framework in Frameworks */,
+				00B784B60FF439BC000DE1D7 /* CoreAudio.framework in Frameworks */,
+				00B9955A1B128DF400A5C623 /* IOKit.framework in Frameworks */,
+				00B9955B1B128DF400A5C623 /* IOSurface.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		01B97315FEAEA392516A2CEA /* Blocks */ = {
+			isa = PBXGroup;
+			children = (
+				420D1898CC11471CAB508EE4 /* CoC-Core */,
+				4C4336C6E6214B8F890AE0D3 /* CoC-Utils */,
+			);
+			name = Blocks;
+			sourceTree = "<group>";
+		};
+		080E96DDFE201D6D7F000001 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				03BD5B2153A1479289937602 /* TextBoxExtendedSampleApp.cpp */,
+			);
+			name = Source;
+			sourceTree = "<group>";
+		};
+		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				006D720219952D00008149E2 /* AVFoundation.framework */,
+				006D720319952D00008149E2 /* CoreMedia.framework */,
+				00B784AF0FF439BC000DE1D7 /* Accelerate.framework */,
+				00B784B00FF439BC000DE1D7 /* AudioToolbox.framework */,
+				00B784B10FF439BC000DE1D7 /* AudioUnit.framework */,
+				00B784B20FF439BC000DE1D7 /* CoreAudio.framework */,
+				5323E6B10EAFCA74003A9687 /* CoreVideo.framework */,
+				0091D8F80E81B9330029341E /* OpenGL.framework */,
+				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
+				00B995581B128DF400A5C623 /* IOKit.framework */,
+				00B995591B128DF400A5C623 /* IOSurface.framework */,
+			);
+			name = "Linked Frameworks";
+			sourceTree = "<group>";
+		};
+		1058C7A2FEA54F0111CA2CBB /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				29B97324FDCFA39411CA2CEA /* AppKit.framework */,
+				29B97325FDCFA39411CA2CEA /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		19C28FACFE9D520D11CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8D1107320486CEB800E47090 /* TextBoxExtendedSample.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		29B97314FDCFA39411CA2CEA /* TextBoxExtendedSample */ = {
+			isa = PBXGroup;
+			children = (
+				01B97315FEAEA392516A2CEA /* Blocks */,
+				29B97315FDCFA39411CA2CEA /* Headers */,
+				080E96DDFE201D6D7F000001 /* Source */,
+				29B97317FDCFA39411CA2CEA /* Resources */,
+				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				19C28FACFE9D520D11CA2CBB /* Products */,
+			);
+			name = TextBoxExtendedSample;
+			sourceTree = "<group>";
+		};
+		29B97315FDCFA39411CA2CEA /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				EAAA790E707649DF8B049001 /* Resources.h */,
+				614E4DF1B782427A9F4ECB5C /* TextBoxExtendedSample_Prefix.pch */,
+			);
+			name = Headers;
+			sourceTree = "<group>";
+		};
+		29B97317FDCFA39411CA2CEA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				200E19215AAA43EDB931086C /* CinderApp.icns */,
+				6B62A3E9B3384389BA6246BF /* Info.plist */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
+				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		420D1898CC11471CAB508EE4 /* CoC-Core */ = {
+			isa = PBXGroup;
+			children = (
+				8C3E88BAE0A84589918703A1 /* src */,
+			);
+			name = "CoC-Core";
+			sourceTree = "<group>";
+		};
+		4BDA5A54A4624546B4E6B9CD /* src */ = {
+			isa = PBXGroup;
+			children = (
+				F3337FBBA31545CEA5170DB0 /* cocBounce.h */,
+				68DBC9D7B682460981C154C5 /* cocBounce2D.h */,
+				0F4E04A28FD74F19B33E7BD7 /* cocFlag.h */,
+				B4312E714FD247CA9D1F2628 /* cocLog.h */,
+				A89659C3726644C7BEC4639B /* cocPoly.h */,
+				08FFB0676F2B434993DD425D /* cocSwipe.h */,
+				4656BC76B6F045D4926415BA /* cocTimer.h */,
+				6B7933B3FFE44CF1A9123C5D /* cocTween.h */,
+				9195F789BC9D40BC9219F8C9 /* cocBounce.cpp */,
+				4616E00AA5FE49E19481C1A7 /* cocBounce2D.cpp */,
+				264EA900EF994D3980677FAD /* cocFlag.cpp */,
+				F1ADB22269334BE4B01C98A0 /* cocPoly.cpp */,
+				21A2E30D6DC547C59ED86284 /* cocSwipe.cpp */,
+				48D23DA2556848C789D6B706 /* cocTimer.cpp */,
+				CD0432695DC5447695942636 /* cocTween.cpp */,
+				140715893E2996659E268F68 /* cocTextBoxExtended.cpp */,
+				14071B42184A0272F9B9BB88 /* cocTextBoxExtended.h */,
+			);
+			name = src;
+			sourceTree = "<group>";
+		};
+		4C4336C6E6214B8F890AE0D3 /* CoC-Utils */ = {
+			isa = PBXGroup;
+			children = (
+				4BDA5A54A4624546B4E6B9CD /* src */,
+			);
+			name = "CoC-Utils";
+			sourceTree = "<group>";
+		};
+		8C3E88BAE0A84589918703A1 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				FBAB7C7DB9B8419699EA7BF2 /* cocConstants.h */,
+				DFFC8E55F03548C1B7ACECE9 /* cocCore.h */,
+				7821DC48B9944438BBC62DFE /* cocMath.h */,
+				83B3DAD9AC344CA7BDCFAABB /* cocRandom.h */,
+				679BD6286886415A8219863C /* cocRect.h */,
+				C8C693B1F05B498C82E51BAB /* cocValue.h */,
+				AAEA50C357EB442DA01DE71C /* cocCore.cpp */,
+				A48F2CCCF2A04052888034F8 /* cocMath.cpp */,
+				9A40B66AAED44F1B8F4B1927 /* cocRandom.cpp */,
+				417EB6BC32874D1A9FFF58E5 /* cocRect.cpp */,
+				3E668A2F290D44609E66759A /* cocValue.cpp */,
+			);
+			name = src;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8D1107260486CEB800E47090 /* TextBoxExtendedSample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "TextBoxExtendedSample" */;
+			buildPhases = (
+				8D1107290486CEB800E47090 /* Resources */,
+				8D11072C0486CEB800E47090 /* Sources */,
+				8D11072E0486CEB800E47090 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TextBoxExtendedSample;
+			productInstallPath = "$(HOME)/Applications";
+			productName = TextBoxExtendedSample;
+			productReference = 8D1107320486CEB800E47090 /* TextBoxExtendedSample.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		29B97313FDCFA39411CA2CEA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+			};
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "TextBoxExtendedSample" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+			);
+			mainGroup = 29B97314FDCFA39411CA2CEA /* TextBoxExtendedSample */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8D1107260486CEB800E47090 /* TextBoxExtendedSample */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8D1107290486CEB800E47090 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				179AFC8B3E84418C9DD31AC2 /* CinderApp.icns in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8D11072C0486CEB800E47090 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DCF00CCE3B804B78A430E0EA /* TextBoxExtendedSampleApp.cpp in Sources */,
+				C1C8794DD6EA4F6CB3230A62 /* cocCore.cpp in Sources */,
+				E6ACCAE3647947C68B25B0B4 /* cocMath.cpp in Sources */,
+				679DF72D53E84E4EA376AE99 /* cocRandom.cpp in Sources */,
+				CF9B18729C8D40C38B89E00E /* cocRect.cpp in Sources */,
+				17B890D23D614479BB54CED8 /* cocValue.cpp in Sources */,
+				A1BE1DCF05774DC99D5DC754 /* cocBounce.cpp in Sources */,
+				E5141660757D4782993B89D3 /* cocBounce2D.cpp in Sources */,
+				7A20E32C4DB242BFAF090F8D /* cocFlag.cpp in Sources */,
+				D2024AE42C574D28923906C1 /* cocPoly.cpp in Sources */,
+				89F32992935049AEA47D6E5D /* cocSwipe.cpp in Sources */,
+				26DDD5AC649E4BEC95E45C1A /* cocTimer.cpp in Sources */,
+				D807DC214D1E4E4BB7A551BD /* cocTween.cpp in Sources */,
+				140717FCB8570AC688C77DF8 /* cocTextBoxExtended.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		C01FCF4B08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = TextBoxExtendedSample_Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+					COC_CI,
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Applications";
+				OTHER_LDFLAGS = "\"$(CINDER_PATH)/lib/libcinder_d.a\"";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.libcinder.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = TextBoxExtendedSample;
+				SYMROOT = ./build;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		C01FCF4C08A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_FAST_MATH = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = TextBoxExtendedSample_Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"NDEBUG=1",
+					"$(inherited)",
+					COC_CI,
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Applications";
+				OTHER_LDFLAGS = "\"$(CINDER_PATH)/lib/libcinder.a\"";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.libcinder.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = TextBoxExtendedSample;
+				STRIP_INSTALLED_PRODUCT = YES;
+				SYMROOT = ./build;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		C01FCF4F08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CINDER_PATH = ../../../../../_cinder/Cinder.git;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++11";
+				CLANG_CXX_LIBRARY = "libc++";
+				ENABLE_TESTABILITY = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "\"$(CINDER_PATH)/include\"";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				USER_HEADER_SEARCH_PATHS = "\"$(CINDER_PATH)/include\" ../include";
+			};
+			name = Debug;
+		};
+		C01FCF5008A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CINDER_PATH = ../../../../../_cinder/Cinder.git;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++11";
+				CLANG_CXX_LIBRARY = "libc++";
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "\"$(CINDER_PATH)/include\"";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				SDKROOT = macosx;
+				USER_HEADER_SEARCH_PATHS = "\"$(CINDER_PATH)/include\" ../include";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "TextBoxExtendedSample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4B08A954540054247B /* Debug */,
+				C01FCF4C08A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "TextBoxExtendedSample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4F08A954540054247B /* Debug */,
+				C01FCF5008A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
+}
