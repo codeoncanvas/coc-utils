@@ -45,10 +45,8 @@ public:
 	//! Draws based on pre-calculated leading
 	void drawWithLeading( ci::vec2 _pos );
 
-	//! Draws line bounds for debugging
-	void drawBounds( ci::vec2 _pos =  ci::vec2(0,0) );
 
-	int getNumLines() { return numLines; }
+	int getNumLines() { return linesTex.size(); }
 	float getLineHeight() { return lineHeight; }
 	int getTotalHeight() { return totalHeight; }
 	ci::gl::TextureRef getTextureRef() const { return texPreLeading; }
@@ -57,13 +55,12 @@ public:
 
 private:
 
-	std::vector<ci::Area>	linesSrc;
-	std::vector<ci::Rectf>	linesDst;
+	std::vector<ci::gl::TextureRef>	linesTex;
+	std::vector<ci::vec2>	linesPos;
 	float 					leadingOffset = 0;
 	bool 					roundToInt = false;
 
-	int 					totalHeight;
-	int                     numLines 		= 0;
+	int 					totalHeight		= 0;
 	float                   lineHeight 		= 0;
 	ci::gl::TextureRef      texPreLeading 	= nullptr;
 

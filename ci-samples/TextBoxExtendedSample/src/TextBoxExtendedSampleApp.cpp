@@ -22,7 +22,6 @@ class TextBoxExtendedSampleApp : public App {
 	int 					leading = 5;
 	int 					numLines = 0;
 	bool 					enableDepth = false;
-	bool 					drawBounds = false;
 };
 
 void TextBoxExtendedSampleApp::setup()
@@ -33,7 +32,6 @@ void TextBoxExtendedSampleApp::setup()
 	params->addParam( "leading", &leading ).min( -20 ).max( 20 );
 	params->addParam( "numLines", &numLines );
 	params->addParam( "enableDepth", &enableDepth );
-	params->addParam( "drawBounds", &drawBounds );
 
 	tbox.setFont( Font("Arial", 13) );
 	string txt =  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ut nisl bibendum, aliquam arcu scelerisque, ornare arcu. Donec pulvinar mattis nunc, porta efficitur nisi blandit et.";
@@ -42,7 +40,7 @@ void TextBoxExtendedSampleApp::setup()
 	tbox.setColor( Color(1,1,1) );
 	tbox.setBackgroundColor( ColorA(0,0,0,0) );
 
-//	tbox.applyLeading(leading,roundToInt); //if not applying in draw
+	tbox.applyLeading(leading,roundToInt); //if not applying in draw
 }
 
 void TextBoxExtendedSampleApp::mouseDown( MouseEvent event )
@@ -63,9 +61,11 @@ void TextBoxExtendedSampleApp::draw()
 
 	tbox.drawWithLeading( vec2(0,0), leading, roundToInt );
 //	tbox.drawWithLeading( vec2(0,0) );//if applying in setup
-	if (drawBounds) tbox.drawBounds();
 
-	gl::draw( gl::Texture::create( tbox.render(vec2(0,0))), vec2(320,0) );
+	gl::drawStrokedRect( Rectf(0,0,tbox.getSize().x, tbox.getTotalHeight()));
+
+	gl::TextureRef tex = gl::Texture::create( tbox.render(vec2(0,0)));
+	gl::draw( tex, vec2(320,0) );
 
 	params->draw();
 }
