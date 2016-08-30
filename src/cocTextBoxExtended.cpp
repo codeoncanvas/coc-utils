@@ -23,6 +23,7 @@
 #include "cinder/Utilities.h"
 #include "cinder/Noncopyable.h"
 #include "cinder/Log.h"
+#include <boost/algorithm/string/trim.hpp>
 
 #if defined( CINDER_COCOA )
 #include "cinder/cocoa/CinderCocoa.h"
@@ -64,13 +65,23 @@ void TextBoxExtended::generateLines() {
 		if ( p.second.y > y) {
 			counter++;
 			y = p.second.y;
+			boost::trim(line);
 			if (i>0) lines.push_back(line);
 			line="";
 		}
 		line += text[i];
 		i++;
+
+
 	}
+	boost::trim(line);
 	lines.push_back(line);
+
+	int j = 0;
+	for (string &line : lines) {
+		cout<<toString(j)<<": "<<line<<endl;
+		j++;
+	}
 
 	//--------------------------------------------------------render lines
 
