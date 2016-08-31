@@ -77,12 +77,6 @@ void TextBoxExtended::generateLines() {
 	boost::trim(line);
 	lines.push_back(line);
 
-	int j = 0;
-	for (string &line : lines) {
-		cout<<toString(j)<<": "<<line<<endl;
-		j++;
-	}
-
 	//--------------------------------------------------------render lines
 
 	TextBox tbox;
