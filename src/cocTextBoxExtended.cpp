@@ -33,7 +33,11 @@
 #include <CoreText/CoreText.h>
 #endif
 #elif defined( CINDER_MSW )
-//
+
+#include "cinder/msw/CinderMsw.h"
+#include "cinder/msw/CinderMswGdiPlus.h"
+#include "cinder/Unicode.h"
+
 #endif
 
 namespace coc {
@@ -184,6 +188,85 @@ void TextBoxExtended::drawWithLeading( ci::vec2 _pos, float _leadingOffset, bool
 }
 
 // CRIBBED FROM cinder/Text.cpp :
+
+#if defined(CINDER_MSW)
+
+vector< pair< uint16_t, vec2 > > TextBoxExtended::measureGlyphs() const
+{
+	vector<pair<uint16_t, vec2> > result;
+
+	if( mText.empty() )
+		return result;
+
+	GCP_RESULTSW gcpResults;
+	WCHAR *glyphIndices = NULL;
+	int *dx = NULL;
+
+	::SelectObject( ci::Font::getGlobalDc(), mFont.getHfont() );
+
+	vector<string> mLines = calculateLineBreaks();
+
+	float curY = 0;
+	for( vector<string>::const_iterator lineIt = mLines.begin(); lineIt != mLines.end(); ++lineIt ) {
+		std::u16string wideText = toUtf16( *lineIt );
+
+		gcpResults.lStructSize = sizeof (gcpResults);
+		gcpResults.lpOutString = NULL;
+		gcpResults.lpOrder = NULL;
+		gcpResults.lpCaretPos = NULL;
+		gcpResults.lpClass = NULL;
+
+		uint32_t bufferSize = std::max<uint32_t>( wideText.length() * 1.2, 16);		/* Initially guess number of chars plus a few */
+		while( true ) {
+			if( glyphIndices ) {
+				free( glyphIndices );
+				glyphIndices = NULL;
+			}
+			if( dx ) {
+				free( dx );
+				dx = NULL;
+			}
+
+			glyphIndices = (WCHAR*)malloc( bufferSize * sizeof(WCHAR) );
+			dx = (int*)malloc( bufferSize * sizeof(int) );
+			gcpResults.nGlyphs = bufferSize;
+			gcpResults.lpDx = dx;
+			gcpResults.lpGlyphs = glyphIndices;
+
+			//this call different to TextBox default:
+			if (!::GetCharacterPlacementW(ci::Font::getGlobalDc(), (wchar_t*)&wideText[0], wideText.length(), 0,
+				&gcpResults, NULL )) { //removed these flags for accurate glyphs array size: GCP_DIACRITIC | GCP_LIGATE | GCP_GLYPHSHAPE | GCP_REORDER
+				return vector<pair<uint16_t, vec2> >(); // failure
+			}
+
+			if( gcpResults.lpDx && gcpResults.lpGlyphs )
+				break;
+
+			// Too small a buffer, try again
+			bufferSize += bufferSize / 2;
+			if( bufferSize > INT_MAX) {
+				return vector<pair<uint16_t,vec2> >(); // failure
+			}
+		}
+
+		int xPos = 0;
+		for( unsigned int i = 0; i < gcpResults.nGlyphs; i++ ) {
+			result.push_back( std::make_pair( glyphIndices[i], vec2( xPos, curY ) ) );
+			xPos += dx[i];
+		}
+
+		curY += mFont.getAscent() + mFont.getDescent();
+	}
+
+	if( glyphIndices )
+		free( glyphIndices );
+	if( dx )
+		free( dx );
+
+	return result;
+}
+
+#endif
 
 #if defined( CINDER_COCOA )
 

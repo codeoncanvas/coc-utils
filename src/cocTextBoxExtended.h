@@ -53,6 +53,10 @@ public:
 
 	ci::Surface    renderWithLeadingOffset( ci::vec2 offset, float leadingOffset );
 
+#if defined(CINDER_MSW)
+	std::vector< std::pair< uint16_t, ci::vec2 > > TextBoxExtended::measureGlyphs() const;
+#endif
+
 private:
 
 	std::vector<ci::gl::TextureRef>	linesTex;
