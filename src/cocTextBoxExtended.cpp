@@ -23,7 +23,7 @@
 #include "cinder/Utilities.h"
 #include "cinder/Noncopyable.h"
 #include "cinder/Log.h"
-#include <boost/algorithm/string/trim.hpp>
+//#include <boost/algorithm/string/trim.hpp>
 
 #if defined( CINDER_COCOA )
 #include "cinder/cocoa/CinderCocoa.h"
@@ -42,6 +42,7 @@ using namespace ci;
 using namespace std;
 
 void TextBoxExtended::generateTexture() {
+	ligate(false);
 	texPreLeading = ci::gl::Texture2d::create( render() );
 }
 
@@ -52,20 +53,22 @@ void TextBoxExtended::generateLines() {
 
 	//--------------------------------------------------------separate lines
 
+
 	std::vector<std::pair<uint16_t,ci::vec2> >pairs = measureGlyphs();
 	int counter = 0;
-	float y = 0;//-99999;
+	float y = pairs[0].second.y;
 
 	string text = getText();
 	vector<string> lines;
-	string line;
+
+	string line = "";
 	int i = 0;
 	for (auto p : pairs ) {
 
 		if ( p.second.y > y) {
 			counter++;
 			y = p.second.y;
-			boost::trim(line);
+//			boost::trim(line);
 			if (i>0) lines.push_back(line);
 			line="";
 		}
@@ -74,7 +77,7 @@ void TextBoxExtended::generateLines() {
 
 
 	}
-	boost::trim(line);
+//	boost::trim(line);
 	lines.push_back(line);
 
 	//--------------------------------------------------------render lines
