@@ -55,10 +55,17 @@ void TextBoxExtended::generateLines() {
 
 
 	std::vector<std::pair<uint16_t,ci::vec2> >pairs = measureGlyphs();
+	string text = getText();
+
+	if (!pairs.size()) {
+		CI_LOG_E("No glyphs! " << text.length() << " chars.");
+		return;
+	}
+
 	int counter = 0;
 	float y = pairs[0].second.y;
 
-	string text = getText();
+
 	vector<string> lines;
 
 	string line = "";
