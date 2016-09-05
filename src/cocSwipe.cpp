@@ -21,7 +21,6 @@
 
 namespace coc {
 
-using namespace std;
 using namespace glm;
 
 //--------------------------------------------------------------

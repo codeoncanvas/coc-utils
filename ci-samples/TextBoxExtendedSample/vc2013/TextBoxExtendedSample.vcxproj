@@ -1,3 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|x64">
@@ -46,7 +47,7 @@
     <ClCompile>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>..\include;"..\..\..\..\..\_cinder\Cinder.git\include";..\..\..\..\..\_cinder\Cinder.git\blocks\coc-core\src;..\..\..\..\..\_cinder\Cinder.git\blocks\coc-utils\src</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_WIN32_WINNT=0x0601;_WINDOWS;NOMINMAX;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_WIN32_WINNT=0x0601;_WINDOWS;NOMINMAX;_DEBUG;COC_CI;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <PrecompiledHeader />
@@ -70,7 +71,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <AdditionalIncludeDirectories>..\include;"..\..\..\..\..\_cinder\Cinder.git\include";..\..\..\..\..\_cinder\Cinder.git\blocks\coc-core\src;..\..\..\..\..\_cinder\Cinder.git\blocks\coc-utils\src</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_WIN32_WINNT=0x0601;_WINDOWS;NOMINMAX;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_WIN32_WINNT=0x0601;_WINDOWS;NOMINMAX;NDEBUG;COC_CI;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <PrecompiledHeader />
       <WarningLevel>Level3</WarningLevel>
@@ -101,6 +102,7 @@
   <ItemGroup />
   <ItemGroup />
   <ItemGroup>
+    <ClCompile Include="..\..\..\src\cocTextBoxExtended.cpp" />
     <ClCompile Include="..\src\TextBoxExtendedSampleApp.cpp" />
     <ClCompile Include="..\..\..\..\..\_cinder\Cinder.git\blocks\coc-core\src\cocCore.cpp" />
     <ClCompile Include="..\..\..\..\..\_cinder\Cinder.git\blocks\coc-core\src\cocMath.cpp" />
@@ -116,6 +118,7 @@
     <ClCompile Include="..\..\..\..\..\_cinder\Cinder.git\blocks\coc-utils\src\cocTween.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\src\cocTextBoxExtended.h" />
     <ClInclude Include="..\include\Resources.h" />
     <ClInclude Include="..\..\..\..\..\_cinder\Cinder.git\blocks\coc-core\src\cocConstants.h" />
     <ClInclude Include="..\..\..\..\..\_cinder\Cinder.git\blocks\coc-core\src\cocCore.h" />
