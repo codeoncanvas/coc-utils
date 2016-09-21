@@ -24,27 +24,34 @@ static std::string formatPosixDateTime( boost::posix_time::ptime &p, std::string
 }
 
 
-//todo: trim string from start not end, or start with iso extended format and remove 'T'?
 //http://www.boost.org/doc/libs/1_43_0/doc/html/date_time/date_time_io.html
-
-static std::string formatIsoDateTime( const std::string& iso, const std::string& fmt )
+static std::string formatIsoDateTime( const std::string& iso, const std::string& fmt, bool trimTimezone = false )
 {
-    //parse iso for boost
-    std::string strIso = std::string(iso,0,iso.length()-6);
+    //parse iso for boost, very picky
+    std::string strIso;
+    if (trimTimezone) { //todo: revisit, should prob trim from start if at all
+        strIso = std::string(iso,0,iso.length()-6);
+    }
+    else {
+        strIso = iso;
+    }
     std::string strIsoBoost ="";
     for (int i=0; i<strIso.length(); i++) {
-        if (strIso[i] != '-' && strIso[i] != ':') strIsoBoost += strIso[i];
+        if (strIso[i] == ' ') {
+            strIsoBoost += 'T';
+        }
+        else if (strIso[i] != '-' && strIso[i] != ':') {
+            strIsoBoost += strIso[i];
+        }
     }
-    boost::posix_time::ptime p = boost::posix_time::from_iso_string( strIsoBoost );
 
     //format with boost
+    boost::posix_time::ptime p = boost::posix_time::from_iso_string( strIsoBoost );
     boost::posix_time::time_facet* facet( new boost::posix_time::time_facet(fmt.c_str()) );
     std::stringstream ss;
     ss.imbue( std::locale( std::locale::classic(), facet ) );
     ss << p;
     return ss.str();
-
-//            return formatPosixDateTime( p, fmt );
 
 }
 
