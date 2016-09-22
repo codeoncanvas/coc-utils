@@ -37,7 +37,7 @@ static std::string formatStringForBoostIso( std::string &strIso ) {
 }
 
 //http://www.boost.org/doc/libs/1_43_0/doc/html/date_time/date_time_io.html
-static std::string formatIsoDateTime( const std::string& iso, const std::string& fmt, bool trimTimezone = false )
+static std::string formatIsoDateTime( const std::string& iso, const std::string& fmt, int hourOffset = 0, bool trimTimezone = false )
 {
     //parse iso for boost, very picky
     std::string strIso;
@@ -51,6 +51,7 @@ static std::string formatIsoDateTime( const std::string& iso, const std::string&
 
     //format with boost
     boost::posix_time::ptime p = boost::posix_time::from_iso_string( strIsoBoost );
+	if (hourOffset) p += boost::posix_time::hours(hourOffset);
     boost::posix_time::time_facet* facet( new boost::posix_time::time_facet(fmt.c_str()) );
     std::stringstream ss;
     ss.imbue( std::locale( std::locale::classic(), facet ) );
