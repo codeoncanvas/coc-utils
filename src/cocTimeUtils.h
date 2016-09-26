@@ -9,12 +9,14 @@
 
 namespace coc {
 
-//format flags:
+//boost format flags:
 //http://www.boost.org/doc/libs/1_35_0/doc/html/date_time/date_time_io.html#date%5Ftime.format%5Fflags
+//windows only supports a subset in VC2013::
+//https://msdn.microsoft.com/en-us/library/fe06s4ak(v=vs.100).aspx
 
-static std::string formatPosixDateTime( boost::posix_time::ptime &p, std::string fmt )
+	static std::string formatPosixDateTime(boost::posix_time::ptime &p, std::string fmt, int hourOffset = 0)
 {
-
+	if (hourOffset) p += boost::posix_time::hours(hourOffset);
     boost::posix_time::time_facet* facet( new boost::posix_time::time_facet(fmt.c_str()) );
     std::stringstream ss;
     ss.imbue( std::locale( std::locale::classic(), facet ) );
