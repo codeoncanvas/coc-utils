@@ -98,6 +98,7 @@ void TextBoxExtended::generateLines() {
 	tbox.setColor( getColor() );
 	tbox.setBackgroundColor( getBackgroundColor() );
 	tbox.setSize( vec2( getSize().x, 0) );
+	tbox.setAlignment( getAlignment() );
 
 	float lastLineHeight = 0;
 	for ( int i = 0; i<lines.size(); i++ ) {
@@ -141,6 +142,8 @@ void TextBoxExtended::applyLeading( float _leadingOffset, bool _roundToInt )
 	else {
 		totalHeight = texPreLeading->getHeight();
 	}
+
+
 }
 
 void TextBoxExtended::drawWithLeading( ci::vec2 _pos )
