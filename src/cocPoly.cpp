@@ -196,48 +196,48 @@ std::vector<glm::vec2> PolyArc(glm::vec2 centre, float radius, int resolution, f
 std::vector<glm::vec2> PolyResample(const std::vector<glm::vec2> & poly,
                                     float sampleDist,
                                     bool bApproximateBestFit) {
+    if(poly.size() < 2) {
+        return poly;
+    }
 
     std::vector<glm::vec2> polyOut;
-    
-    if(poly.size() < 2) {
-        return polyOut;
-    }
+    polyOut.push_back(poly[0]); // add start point.
     
     if(bApproximateBestFit) {
         float length = PolyLength(poly);
         int numOfSamplesRoundedDown = length / sampleDist;
         sampleDist = length / (float)numOfSamplesRoundedDown;
     }
-
-    float segmentOffset = 0.0;
+    
+    float linePos = 0.0;
     for(int i=0; i<poly.size()-1; i++) {
         
         const glm::vec2 & p0 = poly[i];
         const glm::vec2 & p1 = poly[i+1];
         
         float segmentLength = glm::length(p1 - p0);
-        float segmentDist = segmentOffset;
-        float segmentRemainder = segmentLength - segmentDist;
+        float linePos0 = linePos;
+        float linePos1 = linePos + segmentLength;
+        linePos = linePos1;
         
-        if((segmentRemainder - sampleDist) < 0) {
-            segmentOffset += segmentRemainder;
+        bool bSegmentFound = true;
+        bSegmentFound = bSegmentFound && (sampleDist > linePos0);
+        bSegmentFound = bSegmentFound && (sampleDist <= linePos1);
+        if(bSegmentFound == false) {
             continue;
         }
+        
+        float segmentPos = coc::map(sampleDist, linePos0, linePos1, 0.0, segmentLength);
+        while(segmentPos <= segmentLength) {
 
-        int numOfSamples = (segmentRemainder / sampleDist) + 1;
-        for(int j=0; j<numOfSamples; j++) {
-
-            float p = segmentDist / segmentLength;
+            float p = segmentPos / segmentLength;
             glm::vec2 point = (p1 - p0) * p + p0;
             polyOut.push_back(point);
             
-            if(j < numOfSamples-1) {
-                segmentDist += sampleDist;
-            }
+            segmentPos += sampleDist;
         }
-        
-        segmentRemainder = segmentLength - segmentDist;
-        segmentOffset = sampleDist - segmentRemainder;
+        segmentPos -= sampleDist; // segmentPos was over incremented in the while loop, so it needs to be adjusted again.
+        linePos = segmentLength - segmentPos;
     }
     
     return polyOut;
