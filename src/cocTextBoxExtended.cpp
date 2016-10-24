@@ -45,6 +45,11 @@ namespace coc {
 using namespace ci;
 using namespace std;
 
+void TextBoxExtended::reset() {
+    texPreLeading.reset();
+    linesTex.clear();
+}
+
 void TextBoxExtended::generateTexture() {
 	ligate(false);
 	texPreLeading = ci::gl::Texture2d::create( render() );

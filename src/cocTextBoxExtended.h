@@ -31,7 +31,7 @@ class TextBoxExtended : public ci::TextBox
 public:
 
 	~TextBoxExtended() { reset(); }
-	void reset() {  texPreLeading.reset(); }
+	void reset();
 
 	//! Pre-calculates leading
 	void applyLeading( float _leadingOffset, bool _roundToInt = false );
