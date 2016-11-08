@@ -53,6 +53,7 @@ void TextBoxExtended::reset() {
 void TextBoxExtended::generateTexture() {
 	ligate(false);
 	texPreLeading = ci::gl::Texture2d::create( render() );
+	totalWidth = texPreLeading->getWidth();
 }
 
 void TextBoxExtended::generateLines() {

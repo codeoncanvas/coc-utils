@@ -49,6 +49,7 @@ public:
 	int getNumLines() { return linesTex.size(); }
 	float getLineHeight() { return lineHeight; }
 	int getTotalHeight() { return totalHeight; }
+	int getTotalWidth() { return totalWidth; }
 	ci::gl::TextureRef getTextureRef() const { return texPreLeading; }
 
 	ci::Surface    renderWithLeadingOffset( ci::vec2 offset, float leadingOffset );
@@ -65,6 +66,7 @@ private:
 	bool 					roundToInt = false;
 
 	int 					totalHeight		= 0;
+	int 					totalWidth		= 0;
 	float                   lineHeight 		= 0;
 	ci::gl::TextureRef      texPreLeading 	= nullptr;
 
