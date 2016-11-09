@@ -60,6 +60,8 @@ public:
 
 private:
 
+	bool 					isFatalError = false;
+
 	std::vector<ci::gl::TextureRef>	linesTex;
 	std::vector<ci::vec2>	linesPos;
 	float 					leadingOffset = 0;

@@ -72,6 +72,12 @@ void TextBoxExtended::generateLines() {
 		return;
 	}
 
+	if (pairs.size() != text.length()) {
+		CI_LOG_E("Glyphs do not match chars, check for illegal chars:\n\n" << text << "\n\n");
+		isFatalError = true;
+		return;
+	}
+
 	int counter = 0;
 	float y = pairs[0].second.y;
 
@@ -154,6 +160,8 @@ void TextBoxExtended::applyLeading( float _leadingOffset, bool _roundToInt )
 
 void TextBoxExtended::drawWithLeading( ci::vec2 _pos )
 {
+	if (isFatalError) return;
+
 	if (roundToInt) _pos = (ivec2) _pos;
 	if (!linesTex.size()) {
 		CI_LOG_E("Must call applyLeading()!");
@@ -172,6 +180,8 @@ void TextBoxExtended::drawWithLeading( ci::vec2 _pos )
 }
 
 void TextBoxExtended::drawWithLeading( ci::vec2 _pos, float _leadingOffset, bool _roundToInt ) {
+
+	if (isFatalError) return;
 
 	if (_roundToInt) _pos = (ivec2) _pos;
 	if (!linesTex.size()) generateLines();
