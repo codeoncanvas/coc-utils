@@ -177,7 +177,7 @@ std::vector<glm::vec2> PolyGrow(const std::vector<glm::vec2> & poly, float amoun
 }
 
 //--------------------------------------------------------------
-std::vector<glm::vec2> PolyArc(glm::vec2 centre, float radius, int resolution, float angleStart, float angleEnd) {
+std::vector<glm::vec2> PolyArc(glm::vec2 center, float radius, int resolution, float angleStart, float angleEnd) {
 
     std::vector<glm::vec2> polyOut;
 
@@ -185,11 +185,57 @@ std::vector<glm::vec2> PolyArc(glm::vec2 centre, float radius, int resolution, f
         float angle = coc::map(i, 0, resolution-1, angleStart, angleEnd) - angleStart;
         glm::vec2 point = coc::direction(angle, angleStart);
         point *= glm::vec2(radius);
-        point += centre;
+        point += center;
         polyOut.push_back(point);
     }
 
     return polyOut;
+}
+
+//--------------------------------------------------------------
+std::vector<glm::vec2> PolyArc(glm::vec2 center, float radiusX, float radiusY, int resolution, float angleStart, float angleEnd) {
+
+    std::vector<glm::vec2> polyOut;
+
+#ifdef COC_CI
+
+    float res = (angleEnd - angleStart) / resolution;
+    for (float i=angleStart; i<angleEnd + res; i+=res) {
+        glm::vec2 point;
+        point.x = radiusX * ci::math<float>::cos( i ) + center.x;
+        point.y = radiusY * ci::math<float>::sin( i ) + center.y;
+        polyOut.push_back(point);
+    }
+    return polyOut;
+
+#else
+
+    std::cerr<<"This PolyArc not implemented for OF yet!"<<endl;
+    return polyOut;
+
+#endif
+
+}
+
+void PolyArcAppend(glm::vec2 center, float radiusX, float radiusY, std::vector<glm::vec2> &polyOut, int resolution, float angleStart, float angleEnd) {
+
+#ifdef COC_CI
+
+    float res = (angleEnd - angleStart) / resolution;
+    for (float i=angleStart; i<angleEnd; i+=res) {// + res
+        glm::vec2 point;
+        point.x = radiusX * ci::math<float>::cos( i ) + center.x;
+        point.y = radiusY * ci::math<float>::sin( i ) + center.y;
+        polyOut.push_back(point);
+    }
+
+#else
+
+    std::cerr<<"This PolyArc not implemented for OF yet!"<<endl;
+    return polyOut;
+
+#endif
+
 }
 
 //--------------------------------------------------------------

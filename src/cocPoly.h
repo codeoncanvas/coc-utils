@@ -40,12 +40,29 @@ std::vector<glm::vec2> PolyGrow(const std::vector<glm::vec2> & poly,
                                 float amount,
                                 bool bClosed = false);
 
-std::vector<glm::vec2> PolyArc(glm::vec2 centre,
+std::vector<glm::vec2> PolyArc(glm::vec2 center,
                                float radius,
                                int resolution=100,
                                float angleStart=0,
                                float angleEnd=M_PI*2);
-    
+
+//! Uses sin/cos for irregular arc - needs resampling for even point spacing
+std::vector<glm::vec2> PolyArc(glm::vec2 center,
+							float radiusX,
+							float radiusY,
+							int resolution=100,
+							float angleStart=0,
+							float angleEnd=M_PI*2);
+
+void PolyArcAppend(glm::vec2 center,
+				float radiusX,
+				float radiusY,
+				std::vector<glm::vec2> &polyOut,
+				int resolution=100,
+				float angleStart=0,
+				float angleEnd=M_PI*2);
+
+
 std::vector<glm::vec2> PolyResample(const std::vector<glm::vec2> & poly,
                                     float sampleDist,
                                     bool bApproximateBestFit=false);
