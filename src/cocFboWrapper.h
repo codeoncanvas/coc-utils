@@ -47,6 +47,8 @@ public:
     ci::gl::TextureRef getTextureRef();
     bool getIsSetup();
 
+	ci::CameraOrtho & getCam() { return fboCam; };
+
 private:
 
     ci::gl::FboRef      fbo;
