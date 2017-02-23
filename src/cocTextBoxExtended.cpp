@@ -68,7 +68,7 @@ void TextBoxExtended::generateLines() {
 	string text = getText();
 
 	if (!pairs.size()) {
-		CI_LOG_E("No glyphs! " << text.length() << " chars.");
+		if (isVerbose) CI_LOG_V("Warning: No glyphs! " << text.length() << " chars.");
 		return;
 	}
 

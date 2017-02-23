@@ -58,6 +58,8 @@ public:
 	std::vector< std::pair< uint16_t, ci::vec2 > > TextBoxExtended::measureGlyphs() const;
 #endif
 
+	bool isVerbose = false;
+
 private:
 
 	bool 					isFatalError = false;
