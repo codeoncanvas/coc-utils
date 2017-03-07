@@ -20,6 +20,7 @@
 #pragma once
 
 #include "cocCore.h"
+#include <map>
 
 namespace coc {
 
