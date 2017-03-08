@@ -17,6 +17,7 @@
  *
  **/
 
+#include "cinder/app/Platform.h"
 #include "cocScaleGesture.h"
 
 namespace coc {
