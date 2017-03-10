@@ -60,6 +60,7 @@ namespace stencil {
         //Make pixels in the stencil buffer be set to 1 when the stencil test passes
         glStencilOp(GL_KEEP, GL_KEEP, GL_REPLACE);
         //Set all of the pixels below to be 1 in the stencil buffer...
+        glDepthMask(GL_FALSE);
     }
 
     //! Switch from drawing stencil to scene to be masked
@@ -70,6 +71,7 @@ namespace stencil {
         _invert ? glStencilFunc(GL_NOTEQUAL, 1, 1) : glStencilFunc(GL_EQUAL, 1, 1);
         glStencilOp(GL_KEEP, GL_KEEP, GL_KEEP); //Make the stencil buffer not change
         //Draw all pixels where the stencil buffer is 1...
+        glDepthMask(GL_TRUE);
     }
 
     //! Switch back to normal unmasked drawing
