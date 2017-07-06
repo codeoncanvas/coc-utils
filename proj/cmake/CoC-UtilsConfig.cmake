@@ -1,7 +1,20 @@
 if( NOT TARGET CoC-Utils )
     get_filename_component( COC-UTILS_SOURCE_PATH "${CMAKE_CURRENT_LIST_DIR}/../../src" ABSOLUTE )
 
-    FILE(GLOB COC-UTILS_SOURCES ${COC-UTILS_SOURCE_PATH}/*.cpp)
+	LIST( APPEND COC-UTILS_SOURCES
+		${COC-UTILS_SOURCE_PATH}/cocBounce2D.cpp
+		${COC-UTILS_SOURCE_PATH}/cocBounce.cpp
+		${COC-UTILS_SOURCE_PATH}/cocFboWrapper.cpp
+		${COC-UTILS_SOURCE_PATH}/cocFlag.cpp
+		${COC-UTILS_SOURCE_PATH}/cocGLUtils.cpp
+		${COC-UTILS_SOURCE_PATH}/cocParameters.cpp
+		${COC-UTILS_SOURCE_PATH}/cocPoly.cpp
+		${COC-UTILS_SOURCE_PATH}/cocScaleGesture.cpp
+		${COC-UTILS_SOURCE_PATH}/cocSwipe.cpp
+		#${COC-UTILS_SOURCE_PATH}/cocTextBoxExtended.cpp  # causes compile error on linux
+		${COC-UTILS_SOURCE_PATH}/cocTimer.cpp
+		${COC-UTILS_SOURCE_PATH}/cocTween.cpp
+		)
 
     add_library( CoC-Utils ${COC-UTILS_SOURCES} )
     target_include_directories( CoC-Utils PUBLIC "${COC-UTILS_SOURCE_PATH}" )
