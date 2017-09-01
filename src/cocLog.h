@@ -53,15 +53,15 @@ namespace coc {
 		static std::vector<std::string> listDirectory(std::string _path, bool _verbose = false) {
 
 			std::vector<std::string> files;
-			boost::filesystem::path p(_path);
+			ci::fs::path p(_path);
 
 			if (_verbose) ci::app::console() << "About to list " << _path << ":\n";
 
 			if (p.generic_string() != "") {
 
-				for (boost::filesystem::directory_iterator it(p); it != boost::filesystem::directory_iterator(); ++it)
+				for (ci::fs::directory_iterator it(p); it != ci::fs::directory_iterator(); ++it)
 				{
-					if (boost::filesystem::is_regular_file(*it))
+					if (ci::fs::is_regular_file(*it))
 					{
 						std::string fileName = it->path().filename().string();
 
