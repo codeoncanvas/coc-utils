@@ -22,6 +22,7 @@
 
 #pragma once
 
+#include "cinder/app/App.h"
 #include "cinder/Path2d.h"
 #include "cinder/gl/gl.h"
 #include "cinder/Xml.h"
