@@ -3,6 +3,8 @@ if( NOT TARGET CoC-Utils )
 
     FILE(GLOB COC-UTILS_SOURCES ${COC-UTILS_SOURCE_PATH}/*.cpp)
 
+    LIST(REMOVE_ITEM COC-UTILS_SOURCES ${COC-UTILS_SOURCE_PATH}/cocTextBoxExtended.cpp)
+
     add_library( CoC-Utils ${COC-UTILS_SOURCES} )
     target_include_directories( CoC-Utils PUBLIC "${COC-UTILS_SOURCE_PATH}" )
 
