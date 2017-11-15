@@ -43,6 +43,7 @@ enum parameterType {
 	PARAM_BOOL = 2,
 	PARAM_STR = 3,
 	PARAM_VEC2 = 10,
+    PARAM_VEC3 = 11,
     PARAM_COL3 = 20,
     PARAM_COL4 = 21,
 	PARAM_RECT = 30
@@ -72,6 +73,7 @@ public:
 		else if (std::is_same<T, bool>::value) params.back().type = PARAM_BOOL;
 		else if (std::is_same<T, std::string>::value) params.back().type = PARAM_STR;
 		else if (std::is_same<T, glm::vec2>::value) params.back().type = PARAM_VEC2;
+        else if (std::is_same<T, glm::vec3>::value) params.back().type = PARAM_VEC3;
         else if (std::is_same<T, ci::Color>::value) params.back().type = PARAM_COL3;
         else if (std::is_same<T, ci::ColorA>::value) params.back().type = PARAM_COL4;
 		else if (std::is_same<T, ci::Rectf>::value) params.back().type = PARAM_RECT;
