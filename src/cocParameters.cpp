@@ -67,6 +67,12 @@ void Parameters::save( std::string _filename )
                 p.setAttribute( "y", (*(glm::vec3*) params[i].val).y );
                 p.setAttribute( "z", (*(glm::vec3*) params[i].val).z );
                 break;
+            case PARAM_VEC4:
+                p.setAttribute( "x", (*(glm::vec4*) params[i].val).x );
+                p.setAttribute( "y", (*(glm::vec4*) params[i].val).y );
+                p.setAttribute( "z", (*(glm::vec4*) params[i].val).z );
+                p.setAttribute( "w", (*(glm::vec4*) params[i].val).w );
+                break;
             case PARAM_COL3:
                 p.setAttribute( "r", (*(ci::Color*) params[i].val).r );
                 p.setAttribute( "g", (*(ci::Color*) params[i].val).g );
@@ -160,6 +166,12 @@ void Parameters::load( std::string _filename )
                         (*(glm::vec3 *) params[i].val).x = parameter->getAttributeValue<float>( "x", 0 );
                         (*(glm::vec3 *) params[i].val).y = parameter->getAttributeValue<float>( "y", 0 );
                         (*(glm::vec3 *) params[i].val).z = parameter->getAttributeValue<float>( "z", 0 );
+                        break;
+                    case PARAM_VEC4:
+                        (*(glm::vec4 *) params[i].val).x = parameter->getAttributeValue<float>( "x", 0 );
+                        (*(glm::vec4 *) params[i].val).y = parameter->getAttributeValue<float>( "y", 0 );
+                        (*(glm::vec4 *) params[i].val).z = parameter->getAttributeValue<float>( "z", 0 );
+                        (*(glm::vec4 *) params[i].val).w = parameter->getAttributeValue<float>( "w", 0 );
                         break;
                     case PARAM_COL3:
                         (*(ci::Color *) params[i].val).r = parameter->getAttributeValue<float>( "r", 0 );
