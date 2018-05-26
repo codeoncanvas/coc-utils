@@ -2,7 +2,7 @@
 <cinder>
 <block
 	name="CoC-Utils"
-	id=""
+	id="coc.codeoncanvas.utils"
 	author=""
 	summary=""
 	license=""
